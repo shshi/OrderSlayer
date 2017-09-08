@@ -27,5 +27,6 @@ def sign():
     print (txt1, txt2)
 
 
-sign()
+if __name__ == "__main__":
+    app.run()
 
