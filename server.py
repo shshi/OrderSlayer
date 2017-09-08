@@ -1,5 +1,7 @@
-from os import environ
 import flask
-
 app = flask.Flask(__name__)
-app.run(environ.get('PORT'))
+
+@app.route("/")
+def index():
+    #do whatevr here...
+    return "Hello Heruko"
