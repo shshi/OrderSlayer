@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 app = flask.Flask(__name__)
-@app.route("/")
+app.run(environ.get('PORT'))
 def sign():
 
     #登录及签到post数据准备
@@ -26,6 +26,6 @@ def sign():
     txt2 = soup.find_all('p', attrs={"class":"p2"})[0].get_text() #提取"连续签到n天"文本
     print (txt1, txt2)
 
-app.run(environ.get('PORT'))
+
 sign()
 
