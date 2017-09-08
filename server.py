@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 app = flask.Flask(__name__)
-app.run(environ.get('PORT'))
+@app.route("/")
 def sign():
 
     #登录及签到post数据准备
