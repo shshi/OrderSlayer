@@ -1,1 +1,1 @@
-print "hello shaohua"
+print ("hello shaohua")
