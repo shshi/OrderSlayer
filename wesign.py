@@ -24,4 +24,6 @@ def sign():
     txt2 = soup.find_all('p', attrs={"class":"p2"})[0].get_text() #提取"连续签到n天"文本
     return txt1+', '+txt2
 
+sign()
+
 
