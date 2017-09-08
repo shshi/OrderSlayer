@@ -24,7 +24,7 @@ def sign():
     soup = BeautifulSoup(page,"html.parser")
     txt1 = soup.find_all('a', attrs={"class":"btn-sign"})[0].get_text() #提取"已签到"文本
     txt2 = soup.find_all('p', attrs={"class":"p2"})[0].get_text() #提取"连续签到n天"文本
-    return txt1+', 'txt2
+    return txt1+', '+txt2
 
 if __name__ == "__main__":
     app.run()
