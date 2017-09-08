@@ -1,1 +1,1 @@
-web: python WEsign.py
+web: python server.py
