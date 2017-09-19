@@ -50,9 +50,7 @@ def sign():
             s.sendmail("WEsign_Heroku<cell.fantasy@qq.com>", "shi.sh@foxmail.com", msg.as_string())
             s.close()
             print ("Successfully sent to %s"%msg['to'])
-            return True
         except Exception as e:
             print (e)
-            return False
     
 sign()
