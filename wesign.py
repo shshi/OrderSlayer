@@ -38,16 +38,16 @@ def sign():
     except:
         print ("ERROR")
         msg = MIMEMultipart()
-        body = MIMEText("ERROR happened from running WEsign.py, please check on Heroku immediately!")
+        body = MIMEText("ERROR happened from running wesign.py, please check on Heroku immediately!")
         msg.attach(body)
         msg['Subject'] = 'ERROR happened from running WEsign.py on Heroku!'
-        msg['From'] = "WEsign.Heroku<cell.fantasy@qq.com>"
+        msg['From'] = "wesign.Heroku<cell.fantasy@qq.com>"
         msg['To'] = "shi.sh@foxmail.com"
         try:
             s = smtplib.SMTP_SSL("smtp.qq.com", 465)
             s.connect("smtp.qq.com")
             s.login("cell.fantasy","Ssh31415926")
-            s.sendmail("WEsign_Heroku<cell.fantasy@qq.com>", "shi.sh@foxmail.com", msg.as_string())
+            s.sendmail("wesign.Heroku<cell.fantasy@qq.com>", "shi.sh@foxmail.com", msg.as_string())
             s.close()
             print ("Successfully sent to %s"%msg['to'])
         except Exception as e:
