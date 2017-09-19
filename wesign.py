@@ -4,13 +4,12 @@
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
 # Created Date: 2017-09-07
-# Modified Date: 2017-09-08
+# Modified Date: 2017-09-19
 # Version: 1.0
 # Description: sign at Woordee website  
 #===========================================================
 import requests
 from bs4 import BeautifulSoup
-import time
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -57,4 +56,3 @@ def sign():
             return False
     
 sign()
-time.sleep(3)
