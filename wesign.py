@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 #===========================================================
-# Name: WEsign
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
 # Created Date: 2017-09-07
@@ -35,12 +34,14 @@ def sign():
         txt1 = soup.find_all('a', attrs={"class":"btn-sign"})[0].get_text() #提取“已签到”文本
         txt2 = soup.find_all('p', attrs={"class":"p2"})[0].get_text() #提取“连续签到n天”文本
         print (txt1+', '+txt2)
+        
+    #出现异常时发邮件
     except:
         print ("ERROR")
         msg = MIMEMultipart()
         body = MIMEText("ERROR happened from running wesign.py, please check on Heroku immediately!")
         msg.attach(body)
-        msg['Subject'] = 'ERROR happened from running WEsign.py on Heroku!'
+        msg['Subject'] = 'ERROR happened from running wesign.py on Heroku!'
         msg['From'] = "wesign.Heroku<cell.fantasy@qq.com>"
         msg['To'] = "shi.sh@foxmail.com"
         try:
