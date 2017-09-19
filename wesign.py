@@ -53,7 +53,7 @@ def sign():
             print ("Successfully sent to %s"%msg['to'])
             return True
         except Exception as e:
-            print str(e)
+            print (e)
             return False
     
 sign()
