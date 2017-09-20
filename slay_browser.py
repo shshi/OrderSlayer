@@ -25,15 +25,21 @@ def login(b):
     #print page
     
 def hunt(b):
-    if b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").is_displayed(): #判断“预览”是否显示，亦即判断是否有单
-        print 'new order!'
-        b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").click() #点击“预览”
-        b.find_element_by_link_text("领取订单").click() #点击“领取订单”
-        print 'slayed'
-    else:
-        print 'no order'
-        b.find_element_by_xpath("//*[@class='refresh col-md-2']").click()#刷新页面
-        hunt(b)
+    try:
+        if b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").is_displayed(): #判断“预览”是否显示，亦即判断是否有单
+            print 'new order!'
+            b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").click() #点击“预览”
+            b.find_element_by_link_text("领取订单").click() #点击“领取订单”
+            print 'slayed'
+        else:
+            print 'no order'
+            b.refresh() #刷新页面
+            #b.find_element_by_xpath("//*[@class='refresh col-md-2']").click()#点击“刷新订单”
+            hunt(b)
+    except:
+        b.find_element_by_xpath("//*[@class='refresh col-md-2']").click()#点击“刷新订单”
+        time.sleep(2)
+        hunt(b)   
 
 
 login(b)
