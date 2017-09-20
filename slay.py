@@ -32,6 +32,7 @@ def hunt(b):
             b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").click() #点击“预览”
             b.find_element_by_link_text("领取订单").click() #点击“领取订单”
             print 'slayed'
+            time.sleep(7)
         else:
             print 'no order'
             b.refresh #刷新页面
