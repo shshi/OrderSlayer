@@ -54,7 +54,7 @@ def hunt():
                 b.find_element_by_link_text("领取订单").click() #点击“领取订单”
                 #print 'slayed'
                 print '\a' #播放提示音
-                os.popen('Taste.mp3') #播放本地音乐文件
+                #os.popen('Taste.mp3') #播放本地音乐文件
                 #os.system('start Taste.mp3')
                 time.sleep(7)
             else:
