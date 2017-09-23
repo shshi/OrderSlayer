@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 #===========================================================
-# Name: WE_autosign
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
 # Modified Date: 2017-09-01
