@@ -25,28 +25,41 @@ def login():
     print "log in succesfully\nhunting..."
     #page = b.page_source.encode('gbk', 'ignore')
     #print page
-    
+
+def isElementExist(element):
+    try:
+        b.find_element_by_id(element)
+        return True
+    except:
+        return False
+
 def hunt():
     try:
         #if b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").is_displayed(): #判断“预览”是否显示，亦即判断是否有单
         #if b.find_element_by_link_text("预览")[0].is_displayed():
-        if b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed():
-            print 'new order found!'
-            b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”
-            #b.find_element_by_link_text("预览")[0].click() #点击“预览”
-            #b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").click() #点击“预览”
-
-            #保存页面源码
-            page = b.page_source.encode('gbk', 'ignore')
-            log = open('page.log', 'a')
-            log.write(page)
-            log.close()
+        if isElementExist("mCSB_1_container"):
+            if b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed():
             
-            b.find_element_by_link_text("领取订单").click() #点击“领取订单”
-            print 'slayed'
-            os.popen('Taste.mp3')
-            #os.system('start Taste.mp3')
-            time.sleep(7)
+                print 'new order found!'
+                b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”
+                #b.find_element_by_link_text("预览")[0].click() #点击“预览”
+                #b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").click() #点击“预览”
+
+                #保存页面源码
+                page = b.page_source.encode('gbk', 'ignore')
+                log = open('page.log', 'a')
+                log.write(page)
+                log.close()
+            
+                b.find_element_by_link_text("领取订单").click() #点击“领取订单”
+                #print 'slayed'
+                print '\a' #播放提示音
+                os.popen('Taste.mp3') #播放本地音乐文件
+                #os.system('start Taste.mp3')
+                time.sleep(7)
+            else:
+                b.refresh()
+                hunt()
         else:
             #print 'no order'
             b.refresh() #刷新页面
