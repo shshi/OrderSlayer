@@ -13,7 +13,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为900，递归900次后将出现"maximum recursion depth exceeded"的报错）
+sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
 
 b=webdriver.PhantomJS('phantomjs')
 b.set_window_size(1600, 900)
