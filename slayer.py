@@ -25,7 +25,7 @@ def login():
     b.find_element_by_id("loginPassword").send_keys("ssh19198918") #输入密码
     b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
     b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
-    print "log in succesfully\nhunting..."
+    print "successfully logged in\nhunting..."
     #page = b.page_source.encode('gbk', 'ignore') #获取页面源码
     #print page
 
@@ -40,7 +40,7 @@ def hunt():
     try:
         if isElementExist("mCSB_1_container"): #判断是否存在“预览”
             if b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed(): #判断“预览”是否显示，亦即判断是否有新单          
-                print 'new order found!'
+                print 'new order found'
                 b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”
                 #b.find_element_by_link_text("预览")[0].click() #点击“预览”
                 #b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").click() #点击“预览”
