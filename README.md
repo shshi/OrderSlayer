@@ -1,3 +1,3 @@
 # OrderSlayer
-Automatically sign everyday and grab orders on an interpretation website
+Automatically sign everyday and hunt orders on a website
 
