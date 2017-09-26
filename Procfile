@@ -1,1 +1,1 @@
-web: gunicorn woordeesign:app --log-file -
+web: gunicorn websign:app --log-file -
