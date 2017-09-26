@@ -46,10 +46,10 @@ def hunt():
                 #b.find_element_by_xpath("//*[@class='btnNoBg btn btn-link']").click() #点击“预览”
 
                 #保存页面源码
-                page = b.page_source.encode('gbk', 'ignore')
-                log = open('page.log', 'a')
-                log.write(page)
-                log.close()
+                #page = b.page_source.encode('gbk', 'ignore')
+                #log = open('page.log', 'a')
+                #log.write(page)
+                #log.close()
             
                 b.find_element_by_link_text("领取订单").click() #点击“领取订单”
                 print 'slayed'
