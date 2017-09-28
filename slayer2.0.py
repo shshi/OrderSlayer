@@ -19,19 +19,6 @@ def login():
     b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
     print "successfully logged in"
 
-def isElementExist(element):
-    try:
-        b.find_element_by_id(element)
-        return True
-    except:
-        return False
-
-def main():
-    b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”           
-    b.find_element_by_link_text("领取订单").click() #点击“领取订单”
-    print 'slayed'
-    print '\a' #播放提示音
-    time.sleep(7)
 
 def YN():
     yn = raw_input('need to set a word limit?[Y/N] ')
@@ -45,6 +32,20 @@ def YN():
     else:
         return False
 
+def isElementExist(element):
+    try:
+        b.find_element_by_id(element)
+        return True
+    except:
+        return False
+
+def slay():
+    b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”           
+    b.find_element_by_link_text("领取订单").click() #点击“领取订单”
+    print 'slayed'
+    print '\a' #播放提示音
+    time.sleep(7)
+
 def hunt():
     try:
         if isElementExist("mCSB_1_container"): #判断是否存在“预览”，亦即判断是否有单           
@@ -55,13 +56,13 @@ def hunt():
                     num_word = float (txt_word) #转换订单字数为数值类型
                     if num_word <= limit:
                         print "%s words order"%txt_word
-                        main()
+                        slay()
                     else:
                         print "over %d words, let it go"%limit
                         b.refresh()
                         hunt()
                 else:
-                    main()
+                    slay()
             else:
                 b.refresh()
                 hunt()
