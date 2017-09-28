@@ -4,7 +4,7 @@
 # E-mail:shi.sh@foxmail.com
 # Modified Date: 2017-09-27
 # Version: 2.0
-# Version Description: added choice of order word limit 
+# Version Description: added choice of word limit 
 #===========================================================
 from selenium import webdriver
 import time
