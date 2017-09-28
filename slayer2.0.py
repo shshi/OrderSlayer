@@ -50,7 +50,7 @@ def hunt():
         if isElementExist("mCSB_1_container"): #判断是否存在“预览”，亦即判断是否有单           
             if b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed(): #判断“预览”是否显示，亦即判断是否有新单          
                 print 'new order found'
-                if YN():
+                if YN:
                     txt_word = b.find_element_by_xpath("//*[@class='words col-xs-12 col-md-2 nonePadding']").text[0:-3] #获取订单字数
                     num_word = float (txt_word) #转换订单字数为数值类型
                     if num_word <= limit:
@@ -83,6 +83,6 @@ if __name__ == '__main__':
     b.set_window_size(1600, 900)
     b.get("http://talent.woordee.com/front/truser") #WE登录页
     login()
-    YN()
+    YN = YN()
     print "hunting..."
     hunt()
