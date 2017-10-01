@@ -72,7 +72,6 @@ def hunt():
                         b.refresh()
                         hunt()
                 else:
-                    b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”
                     slay()
             else:
                 b.refresh()
