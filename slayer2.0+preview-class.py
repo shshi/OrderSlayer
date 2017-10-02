@@ -81,7 +81,7 @@ class OS():
 
                             self.slay()
                         else:
-                            print "over %d words, let it go"%limit
+                            print "over %d words, let it go\ncontinue hunting..."%limit
                             b.refresh()
                             self.hunt()
                     else:
