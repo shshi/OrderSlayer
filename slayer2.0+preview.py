@@ -12,10 +12,10 @@ import os
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
+sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
 
 def pre():
-    print "some preparation work..."
-    sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
+    print "initiating..."
     global b
     b=webdriver.PhantomJS('phantomjs') #无浏览器模式
     #b=webdriver.Firefox() #浏览器可视模式
