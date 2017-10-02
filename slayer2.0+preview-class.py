@@ -2,7 +2,7 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2017-09-27
+# Modified Date: 2017-10-02
 # Version: 2.0
 # Version Description: added choice of word limit 
 #===========================================================
@@ -16,16 +16,12 @@ sys.setdefaultencoding('utf-8')
 class OS():
     url = ''
     def __init__(self, url):
-        self.url = url
-
-    def pre(self):
         print "some preparation work..."
         sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
         global b
         b=webdriver.PhantomJS('phantomjs') #无浏览器模式
         #b=webdriver.Firefox() #浏览器可视模式
         b.set_window_size(1600, 900)
-        url = self.url
         b.get(url) #WE登录页        
       
     def login(self):
@@ -105,7 +101,6 @@ class OS():
 
 if __name__ == '__main__':
     OS = OS("http://talent.woordee.com/front/truser")
-    OS.pre()
     OS.login()
     YN = OS.YN()
     print "hunting..."
