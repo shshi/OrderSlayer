@@ -80,16 +80,16 @@ class OS():
                             log.close()
 
                             self.slay()
-                        else:
+                        else: 
                             print "over %d words, let it go\ncontinue hunting..."%limit
                             b.refresh()
                             self.hunt()
-                    else:
+                    else: #若无字数限制
                         self.slay()
-                else:
+                else: #若“预览”不显示
                     b.refresh()
                     self.hunt()
-            else:
+            else: #若不存在“预览”
                 b.refresh() #刷新页面
                 self.hunt()
         except Exception as e:
