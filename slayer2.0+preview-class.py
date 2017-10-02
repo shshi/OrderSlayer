@@ -16,7 +16,7 @@ sys.setdefaultencoding('utf-8')
 class OS():
     url = ''
     def __init__(self, url):
-        print "some preparation work..."
+        print "initiating..."
         sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
         global b
         b=webdriver.PhantomJS('phantomjs') #无浏览器模式
