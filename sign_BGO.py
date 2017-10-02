@@ -13,7 +13,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-b=webdriver.PhantomJS('phantomjs')
+b=webdriver.PhantomJS('phantomjs') #无浏览器模式
+#b=webdriver.Firefox() #浏览器可视模式
 b.set_window_size(1600, 900)
 b.get("http://talent.woordee.com/front/truser") #WE登录页
 
