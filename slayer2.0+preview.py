@@ -10,8 +10,19 @@ from selenium import webdriver
 import time
 import os
 import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
-def login():
+def pre():
+    print "some preparation work..."
+    sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
+    global b
+    b=webdriver.PhantomJS('phantomjs') #无浏览器模式
+    #b=webdriver.Firefox() #浏览器可视模式
+    b.set_window_size(1600, 900)
+    b.get("http://talent.woordee.com/front/truser") #WE登录页 
+
+def login():   
     print "logging in..."
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
     b.find_element_by_id("loginPassword").send_keys("ssh19198918") #输入密码
@@ -85,16 +96,9 @@ def hunt():
         time.sleep(3)
         print 'continue hunting...'
         hunt()
-
-if __name__ == '__main__':
-    reload(sys)
-    sys.setdefaultencoding('utf-8')
-    sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
-    b=webdriver.PhantomJS('phantomjs') #无浏览器模式
-    #b=webdriver.Firefox() #浏览器可视模式
-    b.set_window_size(1600, 900)
-    b.get("http://talent.woordee.com/front/truser") #WE登录页
-    login()
-    YN = YN()
-    print "hunting..."
-    hunt()
+        
+pre()
+login()
+YN = YN()
+print "hunting..."
+hunt()
