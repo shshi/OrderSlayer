@@ -90,7 +90,8 @@ if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding('utf-8')
     sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
-    b=webdriver.PhantomJS('phantomjs')
+    b=webdriver.PhantomJS('phantomjs') #无浏览器模式
+    #b=webdriver.Firefox() #浏览器可视模式
     b.set_window_size(1600, 900)
     b.get("http://talent.woordee.com/front/truser") #WE登录页
     login()
