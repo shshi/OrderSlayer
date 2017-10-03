@@ -46,11 +46,15 @@ def isElementExist(element):
     except:
         return False
 
-def slay():          
-    b.find_element_by_link_text("领取订单").click() #点击“领取订单”
-    print 'slayed'
-    print '\a' #播放提示音
-    time.sleep(7)
+def slay(self):
+    try:
+        b.find_element_by_link_text("领取订单").click()
+        print 'slayed'
+        print '\a' #播放提示音
+        time.sleep(7)
+    except:
+        print "preview time"
+        self.slay()
 
 def hunt():
     try:
