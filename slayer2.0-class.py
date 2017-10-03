@@ -41,7 +41,7 @@ class OS():
             global limit
             while True:
                 try:
-                    limit = input('please input a word limit: ')
+                    limit = input('please input the limit: ')
                     return True
                 except:
                     print "this is not a digit, please input again"
