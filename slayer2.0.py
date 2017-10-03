@@ -87,7 +87,7 @@ def hunt():
         print 'continue hunting...'
         hunt()
 
-
+print "initiating..."
 b=webdriver.PhantomJS('phantomjs')
 b.set_window_size(1600, 900)
 b.get("http://talent.woordee.com/front/truser") #WE登录页
