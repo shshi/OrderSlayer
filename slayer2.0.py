@@ -22,7 +22,7 @@ def login():
     b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
     print "successfully logged in"
 
-def YN(self):
+def YN():
     yn = raw_input('need to set a word limit?[Y/N] ')
     while yn != "Y" and yn != "N":
         print "wrong input, please input again(just type 'Y' or 'N') "
