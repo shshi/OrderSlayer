@@ -33,15 +33,15 @@ class OS():
         print "successfully logged in"
 
     def YN(self):
-        yn = raw_input('need to set a word limit?[Y/N] ')
+        yn = raw_input('need a word limit?[Y/N] ')
         while yn != "Y" and yn != "N":
             print "wrong input, please input again(just type 'Y' or 'N') "
-            yn = raw_input('need to set a word limit?[Y/N] ')
+            yn = raw_input('need a word limit?[Y/N] ')
         if yn == "Y":
             global limit
             while True:
                 try:
-                    limit = input('please input word limit: ')
+                    limit = input('please input a word limit: ')
                     return True
                 except:
                     print "this is not a digit, please input again"
@@ -87,6 +87,13 @@ class OS():
                             self.slay()
                         else: 
                             print "over %d words, let it go\ncontinue hunting..."%limit
+
+                            #保存页面源码
+                            page = b.page_source.encode('gbk', 'ignore')
+                            log = open('previewPage.log', 'w')
+                            log.write(page)
+                            log.close()
+                            
                             b.refresh()
                             self.hunt()
                     else: #若无字数限制
