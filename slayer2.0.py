@@ -10,9 +10,6 @@ from selenium import webdriver
 import time
 import os
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
-sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
 
 def login():
     print "logging in..."
@@ -24,18 +21,13 @@ def login():
 
 def YN():
     yn = raw_input('need to set a word limit?[Y/N] ')
-    while yn != "Y" and yn != "N":
+    if yn != "Y" and yn != "N":
         print "wrong input, please input again(just type 'Y' or 'N') "
-        yn = raw_input('need to set a word limit?[Y/N] ')
-    if yn == "Y":
+        YN()
+    elif yn == "Y":
         global limit
-        while True:
-            try:
-                limit = input('please input word limit: ')
-                return True
-            except:
-                print "this is not a digit, please input again"
-                continue
+        limit = input('please input word limit: ') #输入接单字数限制       
+        return True
     else:
         return False
 
@@ -46,27 +38,30 @@ def isElementExist(element):
     except:
         return False
 
-def slay(self):
-    try:
-        b.find_element_by_link_text("领取订单").click()
-        print 'slayed'
-        print '\a' #播放提示音
-        time.sleep(7)
-    except:
-        print "preview time"
-        self.slay()
+def slay():
+    b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”           
+    b.find_element_by_link_text("领取订单").click() #点击“领取订单”
+    print 'slayed'
+    print '\a' #播放提示音
+    time.sleep(7)
 
 def hunt():
     try:
         if isElementExist("mCSB_1_container"): #判断是否存在“预览”，亦即判断是否有单           
             if b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed(): #判断“预览”是否显示，亦即判断是否有新单          
                 print 'new order found'
-                b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”
                 if YN:
                     txt_word = b.find_element_by_xpath("//*[@class='words col-xs-12 col-md-2 nonePadding']").text[0:-3] #获取订单字数
                     num_word = float (txt_word) #转换订单字数为数值类型
                     if num_word <= limit:
                         print "%s words order"%txt_word
+                        
+                        #保存页面源码
+                        page = b.page_source.encode('gbk', 'ignore')
+                        log = open('previewPage.log', 'a')
+                        log.write(page)
+                        log.close()
+
                         slay()
                     else:
                         print "over %d words, let it go"%limit
@@ -87,7 +82,9 @@ def hunt():
         print 'continue hunting...'
         hunt()
 
-print "initiating..."
+reload(sys)
+sys.setdefaultencoding('utf-8')
+sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
 b=webdriver.PhantomJS('phantomjs')
 b.set_window_size(1600, 900)
 b.get("http://talent.woordee.com/front/truser") #WE登录页
