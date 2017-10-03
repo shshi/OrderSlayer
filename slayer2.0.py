@@ -46,8 +46,7 @@ def isElementExist(element):
     except:
         return False
 
-def slay():
-    b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”           
+def slay():          
     b.find_element_by_link_text("领取订单").click() #点击“领取订单”
     print 'slayed'
     print '\a' #播放提示音
@@ -58,6 +57,7 @@ def hunt():
         if isElementExist("mCSB_1_container"): #判断是否存在“预览”，亦即判断是否有单           
             if b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed(): #判断“预览”是否显示，亦即判断是否有新单          
                 print 'new order found'
+                b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”
                 if YN:
                     txt_word = b.find_element_by_xpath("//*[@class='words col-xs-12 col-md-2 nonePadding']").text[0:-3] #获取订单字数
                     num_word = float (txt_word) #转换订单字数为数值类型
