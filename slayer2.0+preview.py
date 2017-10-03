@@ -32,13 +32,18 @@ def login():
 
 def YN():
     yn = raw_input('need to set a word limit?[Y/N] ')
-    if yn != "Y" and yn != "N":
+    while yn != "Y" and yn != "N":
         print "wrong input, please input again(just type 'Y' or 'N') "
-        YN()
-    elif yn == "Y":
+        yn = raw_input('need to set a word limit?[Y/N] ')
+    if yn == "Y":
         global limit
-        limit = input('please input word limit: ') #输入接单字数限制       
-        return True
+        while True:
+            try:
+                limit = input('please input word limit: ')
+                return True
+            except:
+                print "this is not a digit, please input again"
+                continue
     else:
         return False
 
