@@ -40,7 +40,7 @@ def sign():
     except:
         print ("ERROR")
         msg = MIMEMultipart()
-        body = MIMEText("ERROR happened from running wesign.py, please check on Heroku immediately!")
+        body = MIMEText("ERROR happened from running sign.py, please check on Heroku immediately!")
         msg.attach(body)
         msg['Subject'] = 'ERROR happened from running wesign.py on Heroku!'
         msg['From'] = "wesign.Heroku<cell.fantasy@qq.com>"
