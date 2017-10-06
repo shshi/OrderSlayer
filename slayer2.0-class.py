@@ -51,7 +51,7 @@ class OS():
 
     def isElementExist(self, element):
         try:
-            b.find_element_by_id(self, element)
+            b.find_element_by_id(element)
             return True
         except:
             return False
