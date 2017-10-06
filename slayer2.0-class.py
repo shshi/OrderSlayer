@@ -80,7 +80,7 @@ class OS():
 
                             #保存页面源码
                             page = b.page_source
-                            log = open('HTMLaftPreview.html', 'w')
+                            log = open('aftPreview.html', 'w')
                             log.write(page)
                             log.close()
 
@@ -90,7 +90,7 @@ class OS():
 
                             #保存页面源码
                             page = b.page_source
-                            log = open('HTMLaftPreview.html', 'w')
+                            log = open('aftPreview.html', 'w')
                             log.write(page)
                             log.close()
                             
