@@ -79,8 +79,8 @@ class OS():
                             print "%s words order"%txt_word
 
                             #保存页面源码
-                            page = b.page_source.encode('gbk', 'ignore')
-                            log = open('HTMLaftPreview', 'w')
+                            page = b.page_source
+                            log = open('HTMLaftPreview.html', 'w')
                             log.write(page)
                             log.close()
 
@@ -89,8 +89,8 @@ class OS():
                             print "over %d words, let it go\ncontinue hunting..."%limit
 
                             #保存页面源码
-                            page = b.page_source.encode('gbk', 'ignore')
-                            log = open('HTMLaftPreview', 'w')
+                            page = b.page_source
+                            log = open('HTMLaftPreview.html', 'w')
                             log.write(page)
                             log.close()
                             
