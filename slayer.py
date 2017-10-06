@@ -47,7 +47,7 @@ def hunt():
 
                 #保存页面源码
                 #page = b.page_source.encode('gbk', 'ignore')
-                #log = open('page.log', 'a')
+                #log = open('HTMLaftPreview', 'w')
                 #log.write(page)
                 #log.close()
             
