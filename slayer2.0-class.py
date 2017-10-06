@@ -75,7 +75,7 @@ class OS():
                     if YN:
                         txt_word = b.find_element_by_xpath("//*[@class='words col-xs-12 col-md-2 nonePadding']").text[0:-3] #获取订单字数
                         num_word = float (txt_word) #转换订单字数为数值类型
-                        print "%s words order"%txt_word
+                        print "%d words order"%num_word
                         if num_word <= limit:
 
                             #保存页面源码
