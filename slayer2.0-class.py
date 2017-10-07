@@ -21,7 +21,8 @@ class OS():
         global b
         b=webdriver.PhantomJS('phantomjs') #无浏览器模式
         #b=webdriver.Firefox() #浏览器可视模式
-        b.set_window_size(1600, 900)
+        #b.set_window_size(1600, 900)
+        b.maximize_window()
         b.get(url) #WE登录页        
       
     def login(self):
