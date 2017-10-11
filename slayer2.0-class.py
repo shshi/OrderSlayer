@@ -83,10 +83,10 @@ class OS():
                             print "over %d words, let it go\ncontinue hunting..."%limit
 
                             #保存页面源码
-                            page = b.page_source
-                            log = open('aftPreview.html', 'w')
-                            log.write(page)
-                            log.close()
+                            #page = b.page_source
+                            #log = open('aftPreview.html', 'w')
+                            #log.write(page)
+                            #log.close()
                             
                             b.refresh()
                             self.hunt()
