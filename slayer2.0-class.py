@@ -78,13 +78,6 @@ class OS():
                         num_word = float (txt_word) #转换订单字数为数值类型
                         print "%d words order"%num_word
                         if num_word <= limit:
-
-                            #保存页面源码
-                            page = b.page_source
-                            log = open('aftPreview.html', 'w')
-                            log.write(page)
-                            log.close()
-
                             self.slay()
                         else: 
                             print "over %d words, let it go\ncontinue hunting..."%limit
