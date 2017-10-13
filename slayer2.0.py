@@ -44,7 +44,7 @@ def isElementExist(element):
     except:
         return False
 
-def slay(self):
+def slay():
     try:
         b.find_element_by_link_text("领取订单").click()
         print 'slayed'
