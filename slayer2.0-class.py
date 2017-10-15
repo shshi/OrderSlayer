@@ -20,9 +20,10 @@ class OS():
         print "initiating..."
         global b
         b=webdriver.PhantomJS('phantomjs') #无浏览器模式
+        b.implicitly_wait(7)
         #b=webdriver.Firefox() #浏览器可视模式
         #b.set_window_size(1600, 900)
-        b.maximize_window()
+        #b.maximize_window()
         b.get(url) #WE登录页        
       
     def login(self):
@@ -101,7 +102,7 @@ class OS():
         except Exception as e:
             print e
             b.refresh()
-            time.sleep(3)
+            #time.sleep(3)
             print 'continue hunting...'
             self.hunt()
 
