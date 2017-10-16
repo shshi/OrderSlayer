@@ -107,6 +107,7 @@ class OS():
             self.hunt()
 
 if __name__ == '__main__':
+    print "Hi, I'm Shaohua, the author of this script. Please feel free to contact me if you have any questions.\nE-mail: shi.sh@foxmail.com\nenjoy!\n"
     OS = OS("http://talent.woordee.com/front/truser")
     OS.login()
     YN = OS.YN()
