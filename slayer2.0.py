@@ -2,7 +2,7 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2017-09-27
+# Modified Date: 2017-10-02
 # Version: 2.0
 # Version Description: added choice of word limit 
 #===========================================================
@@ -12,8 +12,8 @@ import os
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-sys.setrecursionlimit(100000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
-
+sys.setrecursionlimit(1000000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
+      
 def login():
     print "logging in..."
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
@@ -23,19 +23,21 @@ def login():
     print "successfully logged in"
 
 def YN():
-    yn = raw_input('need to set a word limit?[Y/N] ')
+    yn = raw_input('need a word limit?[Y/N] ')
     while yn != "Y" and yn != "N":
         print "wrong input, please input again(just type 'Y' or 'N') "
-        yn = raw_input('need to set a word limit?[Y/N] ')
+        yn = raw_input('need a word limit?[Y/N] ')
     if yn == "Y":
         global limit
         while True:
             try:
-                limit = input('please input word limit: ')
+                limit = input('please input the limit: ')
                 return True
             except:
                 print "this is not a digit, please input again"
                 continue
+    else:
+        return False
 
 def isElementExist(element):
     try:
@@ -52,7 +54,7 @@ def slay():
         time.sleep(7)
     except:
         print "preview time"
-        self.slay()
+        slay()
 
 def hunt():
     try:
@@ -63,40 +65,42 @@ def hunt():
                 if YN:
                     txt_word = b.find_element_by_xpath("//*[@class='words col-xs-12 col-md-2 nonePadding']").text[0:-3] #获取订单字数
                     num_word = float (txt_word) #转换订单字数为数值类型
+                    print "%d words order"%num_word
                     if num_word <= limit:
-                        print "%s words order"%txt_word
-                        
-                        #保存页面源码
-                        page = b.page_source.encode('gbk', 'ignore')
-                        log = open('previewPage.log', 'a')
-                        log.write(page)
-                        log.close()
-
                         slay()
-                    else:
+                    else: 
                         print "over %d words, let it go\ncontinue hunting..."%limit
+
+                        #保存页面源码
+                        #page = b.page_source
+                        #log = open('aftPreview.html', 'w')
+                        #log.write(page)
+                        #log.close()
+                            
                         b.refresh()
                         hunt()
-                else:
+                else: #若无字数限制
                     slay()
-            else:
+            else: #若“预览”不显示
                 b.refresh()
                 hunt()
-        else:
+        else: #若不存在“预览”
             b.refresh() #刷新页面
             hunt()
     except Exception as e:
         print e
         b.refresh()
-        time.sleep(3)
+        #time.sleep(3)
         print 'continue hunting...'
         hunt()
 
 print "initiating..."
-b=webdriver.PhantomJS('phantomjs')  #无浏览器模式
+b=webdriver.PhantomJS('phantomjs') #无浏览器模式
+b.implicitly_wait(7)
 #b=webdriver.Firefox() #浏览器可视模式
-b.set_window_size(1600, 900)
-b.get("http://talent.woordee.com/front/truser") #WE登录页
+#b.set_window_size(1600, 900)
+#b.maximize_window()
+b.get("http://talent.woordee.com/front/truser") #WE登录页       
 login()
 YN = YN()
 print "hunting..."
