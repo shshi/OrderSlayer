@@ -2,9 +2,9 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2017-10-02
-# Version: 2.0
-# Version Description: added choice of word limit 
+# Modified Date: 2017-10-20
+# Version: 3.0
+# Version Description: optimized hunting loop with new method
 #===========================================================
 from selenium import webdriver
 import requests
