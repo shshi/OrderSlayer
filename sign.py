@@ -14,7 +14,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def sign():
-
     try:
         #登录及签到post数据准备
         s = requests.session()
@@ -23,7 +22,7 @@ def sign():
     
         #登录操作
         log = s.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址 
-        html = s.get('http://talent.woordee.com/front/truser/userCenter') #get登陆后的地址
+        html = s.get('http://talent.woordee.com/front/truser/userCenter') #get登陆后的地址        
 
         #签到操作
         s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到  
@@ -35,24 +34,29 @@ def sign():
         txt1 = soup.find_all('a', attrs={"class":"btn-sign"})[0].get_text() #提取“已签到”文本
         txt2 = soup.find_all('p', attrs={"class":"p2"})[0].get_text() #提取“连续签到n天”文本
         print (txt1+', '+txt2)
-        
-    #出现异常时发邮件
+        if len(txt1)==5:
+            print "Successfully signed"
+        else:
+            sendMail()
     except:
-        print ("ERROR")
-        msg = MIMEMultipart()
-        body = MIMEText("ERROR happened from running sign.py, please check on Heroku immediately!")
-        msg.attach(body)
-        msg['Subject'] = 'ERROR happened from running sign.py on Heroku!'
-        msg['From'] = "sign.Heroku<cell.fantasy@qq.com>"
-        msg['To'] = "shi.sh@foxmail.com"
-        try:
-            s = smtplib.SMTP_SSL("smtp.qq.com", 465)
-            s.connect("smtp.qq.com")
-            s.login("cell.fantasy","Ssh31415926")
-            s.sendmail("sign.Heroku<cell.fantasy@qq.com>", "shi.sh@foxmail.com", msg.as_string())
-            s.close()
-            print ("Successfully sent to %s"%msg['to'])
-        except Exception as e:
-            print (e)
+        sendMail()
+
+def sendMail():        
+    print ("Signing ERROR")
+    msg = MIMEMultipart()
+    body = MIMEText("ERROR happened from running sign.py, please check on Heroku immediately!")
+    msg.attach(body)
+    msg['Subject'] = 'ERROR happened from running sign.py on Heroku!'
+    msg['From'] = "sign.Heroku<cell.fantasy@qq.com>"
+    msg['To'] = "shi.sh@foxmail.com"
+    try:
+        s = smtplib.SMTP_SSL("smtp.qq.com", 465)
+        s.connect("smtp.qq.com")
+        s.login("cell.fantasy","Ssh31415926")
+        s.sendmail("sign.Heroku<cell.fantasy@qq.com>", "shi.sh@foxmail.com", msg.as_string())
+        s.close()
+        print ("Successfully sent to %s"%msg['to'])
+    except Exception as e:
+        print (e)
     
 sign()
