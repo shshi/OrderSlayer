@@ -68,7 +68,7 @@ def hunt():
     html = s.get('http://talent.woordee.com/front/task/taskCenter') #get登陆后的地址
 
     i = 'id="previewBtn'
-    while not i in s.get('http://talent.woordee.com/front/task/taskCenter').content:
+    while not i in html.content:
         #print "no order"
         time.sleep(1)
         continue
