@@ -35,7 +35,7 @@ def sign():
         txt2 = soup.find_all('p', attrs={"class":"p2"})[0].get_text() #提取“连续签到n天”文本
         print (txt1+', '+txt2)
         if len(txt1)==5:
-            print "Successfully signed"
+            print ("Successfully signed")
         else:
             sendMail()
     except:
