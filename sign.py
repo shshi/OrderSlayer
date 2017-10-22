@@ -31,10 +31,10 @@ def sign():
         page = s.get('http://talent.woordee.com/front/truser/userCenter').content #重新get地址并获取页面源码
         soup = BeautifulSoup(page,"html.parser")
 
-        txt1 = soup.find_all('a', attrs={"class":"btn-sign"})[0].get_text() #提取“已签到”文本
+        txt1 = soup.find_all('a', attrs={"class":"btn-sign"})[0].get_text().strip() #提取“已签到”文本
         txt2 = soup.find_all('p', attrs={"class":"p2"})[0].get_text() #提取“连续签到n天”文本
         print (txt1+', '+txt2)
-        if len(txt1)==5:
+        if len(txt1)==3:
             print ("Successfully signed")
         else:
             sendMail()
