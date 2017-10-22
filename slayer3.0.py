@@ -60,7 +60,6 @@ def slay():
 def hunt():
     s = requests.session()
     log_data = {'loginPhone':'18209347100','loginPassword':'ssh19198918'} #登录post数据
-    sgn_data = {'translatorId':'WE16104633TR'} #签到post数据
     
     #登录操作
     log = s.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址
