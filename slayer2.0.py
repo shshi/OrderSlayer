@@ -69,7 +69,7 @@ def hunt():
                     if num_word <= limit:
                         slay()
                     else: 
-                        print "over %d words, continue hunting..."%limit
+                        print "over %d words. continue hunting..."%limit
 
                         #保存页面源码
                         #page = b.page_source
