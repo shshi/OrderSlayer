@@ -22,7 +22,7 @@ def sign():
     
         #登录操作
         log = s.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址 
-        html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址        
+        html = s.get('http://talent.woordee.com/front/truser/userCenter') #get登陆后的地址        
 
         #签到操作
         s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到  
