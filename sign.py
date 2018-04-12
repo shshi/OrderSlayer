@@ -25,7 +25,7 @@ def sign():
         html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址        
 
         #签到操作
-        s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到  
+        s.post('http://talent.woordee.com/front/square/sign', sgn_data) #触发签到  
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
