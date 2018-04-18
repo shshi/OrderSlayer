@@ -26,14 +26,13 @@ def sign():
 
         #签到操作
         s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到
-        print ("yes")
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
         soup = BeautifulSoup(page,"html.parser")
 
         txt1 = soup.find_all('a', attrs={"id":"ySign"})[0].get_text().strip() #提取“已签到”文本
-        txt2 = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text() #提取“连续签到n天”文本
+        #txt2 = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text() #提取“连续签到n天”文本
         print (txt1+', '+txt2)
         if len(txt1)==3:
             print ("Successfully signed")
