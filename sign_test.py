@@ -37,12 +37,4 @@ def sign():
         print (txt1+', '+txt2)
         if len(txt1)==3:
             print ("Successfully signed")
-        else:
-            sendMail()
-    except:
-        sendMail()
-
-def sendMail():        
-    print ("Signing ERROR")
-  
 sign()
