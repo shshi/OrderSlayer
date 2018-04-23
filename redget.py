@@ -1,10 +1,11 @@
 #-*- coding: utf-8 -*-
 #===========================================================
-# Name: WE_autosign
+# Name: redget
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2017-09-01
+# Modified Date: 2018-04-23
 # Version: 1.0
+# Description: get red packet from talent.woordee.com
 #===========================================================
 from selenium import webdriver
 import time
