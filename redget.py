@@ -18,9 +18,7 @@ def sign(b):
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
     b.find_element_by_id("loginPassword").send_keys("ssh19198918") #输入密码
     b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
-    #b.find_element_by_xpath("//*[@class='btn-sign']").click() #触发签到
-    b.find_element_by_xpath("/html/body/div[2]/div/div/div[1]/div/div/a").click()
-    #b.find_element_by_xpath('//*[@id="timeAtag"]').click()
+    b.find_element_by_class_name("btn-sign").click()
     
 #b=webdriver.PhantomJS('phantomjs')
 #b.set_window_size(1600, 900)
