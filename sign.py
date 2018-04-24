@@ -37,13 +37,12 @@ def sign():
         if len(txt1)==3:
             print ("Successfully signed")
         else:
-            print ("Sign failed")
             sendMail()
     except:
         sendMail()
 
 def sendMail():        
-    print ("Signing ERROR")
+    print ("Failed in signing")
     msg = MIMEMultipart()
     body = MIMEText("ERROR happened from running sign.py, please check on Heroku immediately!")
     msg.attach(body)
