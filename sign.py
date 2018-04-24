@@ -37,6 +37,7 @@ def sign():
         if len(txt1)==3:
             print ("Successfully signed")
         else:
+            print ("Sign failed")
             sendMail()
     except:
         sendMail()
