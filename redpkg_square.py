@@ -60,12 +60,12 @@ def sendMail():
         print (e)
 
 for i in range(60):
-    print i
+    print (i)
     sign()
     time.sleep(1)
     if i < 59:
-        print "looping"
+        print ("looping")
     else:
-        print "finished!"
+        print ("finished!")
 
 
