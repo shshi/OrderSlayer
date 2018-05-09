@@ -25,8 +25,14 @@ def sign():
         log = s.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址 
         html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址        
 
-        #签到操作
-        s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到  
+        for i in range(60):
+            print (i)
+            s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到
+            time.sleep(1)
+            if i < 59:
+                print ("looping")
+            else:
+                print ("finished!")
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
@@ -58,14 +64,4 @@ def sendMail():
         print ("Successfully sent to %s"%msg['to'])
     except Exception as e:
         print (e)
-
-for i in range(60):
-    print (i)
-    sign()
-    time.sleep(1)
-    if i < 59:
-        print ("looping")
-    else:
-        print ("finished!")
-
 
