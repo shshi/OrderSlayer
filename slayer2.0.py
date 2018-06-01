@@ -17,7 +17,7 @@ sys.setrecursionlimit(1000000) #设置最大递归次数（若不设置，默认
 def login():
     print "logging in..."
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
-    b.find_element_by_id("loginPassword").send_keys("ssh19198918") #输入密码
+    b.find_element_by_id("password").send_keys("ssh19198918") #输入密码
     b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
     b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
     print "successfully logged in"
@@ -100,7 +100,7 @@ b=webdriver.PhantomJS('phantomjs') #无浏览器模式
 #b=webdriver.Firefox() #浏览器可视模式
 #b.set_window_size(1600, 900)
 #b.maximize_window()
-b.get("http://talent.woordee.com/front/truser") #WE登录页       
+b.get("http://talent.woordee.com/front/truser.html") #WE登录页       
 login()
 YN = YN()
 print "hunting..."
