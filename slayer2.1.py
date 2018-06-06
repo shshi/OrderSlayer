@@ -19,12 +19,21 @@ b=webdriver.PhantomJS('phantomjs') #无浏览器模式
 b.set_window_size(1600, 900)
       
 def login():
+    b.set_page_load_timeout(7)
     print "logging in..."
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
     b.find_element_by_id("password").send_keys("ssh19198918") #输入密码
-    b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
-    b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
-    print "successfully logged in"
+    try:
+        b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
+    except:
+        b.execute_script('window.stop()')
+        print "login click (timeout)"
+    try:
+        b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
+        print "successfully logged in"
+    except:
+        b.execute_script('window.stop()')
+        print "successfully logged in (timeout)"    
 
 def limit_YN():
     yn = raw_input('need a word limit?[Y/N] ')
@@ -61,7 +70,7 @@ def slay():
         slay()
         
 def refreshPg():
-    b.set_page_load_timeout(3)
+    b.set_page_load_timeout(5)
     try:
         b.refresh()
     except:
