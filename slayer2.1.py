@@ -19,6 +19,7 @@ b=webdriver.PhantomJS('phantomjs') #无浏览器模式
 b.set_window_size(1600, 900)
       
 def login():
+    b.get('http://talent.woordee.com/front/truser.html')#WE登录页
     #b.set_page_load_timeout(7)
     print "logging in..."
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
@@ -128,7 +129,6 @@ def hunt():
         hunt()
 
 print "initiating..."        
-b.get('http://talent.woordee.com/front/truser.html')#WE登录页
 login()
 limitYes = limit_YN()
 #print b.title
