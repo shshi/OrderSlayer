@@ -90,7 +90,7 @@ def hunt():
             if b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed(): #判断“预览”是否显示，亦即判断是否有新单          
                 print 'new order found'
                 preView()             
-                if limit:
+                if limitYes:
                     txt_word = b.find_element_by_xpath("//*[@class='words col-xs-12 col-md-2 nonePadding']").text[0:-3] #获取订单字数
                     num_word = float (txt_word) #转换订单字数为数值类型
                     print "%d words order"%num_word
@@ -125,7 +125,7 @@ def hunt():
 print "initiating..."        
 b.get('http://talent.woordee.com/front/truser.html')#WE登录页
 login()
-limit = limit_YN()
+limitYes = limit_YN()
 print "hunting..."
 hunt()
 b.quit()
