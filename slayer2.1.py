@@ -2,8 +2,8 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2017-10-02
-# Version: 2.0
+# Modified Date: 2018-06-06
+# Version: 2.1
 # Version Description: optimized hunting speed
 #===========================================================
 from selenium import webdriver
