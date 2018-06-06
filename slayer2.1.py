@@ -91,7 +91,7 @@ def hunt():
             if b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed(): #判断“预览”是否显示，亦即判断是否有新单          
                 print 'new order found'
                 preView()             
-                if limit_YN():
+                if limit:
                     txt_word = b.find_element_by_xpath("//*[@class='words col-xs-12 col-md-2 nonePadding']").text[0:-3] #获取订单字数
                     num_word = float (txt_word) #转换订单字数为数值类型
                     print "%d words order"%num_word
