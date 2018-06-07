@@ -34,7 +34,7 @@ def login():
     try:
         b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
     except:
-        print "login click (timeout)"
+        print "timeout"
     try:
         b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
         print "successfully logged in"
