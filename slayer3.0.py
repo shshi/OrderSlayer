@@ -66,7 +66,7 @@ def isElementExist(element):
         return False
 
 def slay():
-    b.set_page_load_timeout(22)
+    b.set_page_load_timeout(180)
     try:
         print "Game On"
         b.find_element_by_link_text("领取订单").click()
