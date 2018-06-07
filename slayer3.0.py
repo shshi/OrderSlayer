@@ -9,7 +9,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
-import os
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
