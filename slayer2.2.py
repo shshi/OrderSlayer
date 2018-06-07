@@ -3,7 +3,7 @@
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
 # Modified Date: 2018-06-07
-# Version: 2.1
+# Version: 2.2
 # Version Description: added prohibition image load for PhantomJS
 #===========================================================
 from selenium import webdriver
