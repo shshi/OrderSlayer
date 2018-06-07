@@ -2,7 +2,7 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2018-06-06
+# Modified Date: 2018-06-07
 # Version: 3.0
 # Version Description: optimized hunting speed by setting page load timeout and prohibiton of image load 
 #===========================================================
