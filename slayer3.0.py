@@ -18,24 +18,27 @@ sys.setrecursionlimit(1000000) #设置最大递归次数（若不设置，默认
 dcap = dict(DesiredCapabilities.PHANTOMJS)
 dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
 b=webdriver.PhantomJS(desired_capabilities=dcap) #无浏览器模式
+#b=webdriver.Firefox()
 b.set_window_size(1600, 900)
       
 def login():
-    b.get('http://talent.woordee.com/front/truser.html')#WE登录页
     b.set_page_load_timeout(7)
+    try:
+        b.get('http://talent.woordee.com/front/truser.html')#WE登录页
+    except:
+        #b.execute_script('window.stop()')
+        pass
     print "logging in..."
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
     b.find_element_by_id("password").send_keys("ssh19198918") #输入密码
     try:
         b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
     except:
-        b.execute_script('window.stop()')
         print "login click (timeout)"
     try:
         b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
         print "successfully logged in"
     except:
-        b.execute_script('window.stop()')
         print "successfully logged in (timeout)"    
 
 def limit_YN():
@@ -75,11 +78,10 @@ def slay():
         slay()
         
 def refreshPg():
-    b.set_page_load_timeout(5)
+    b.set_page_load_timeout(4)
     try:
         b.refresh()
     except:
-        b.execute_script('window.stop()')
         print "refresh timeout"
 
 def preView():
@@ -87,7 +89,7 @@ def preView():
     try:
         b.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”
     except:
-        b.execute_script('window.stop()')
+        pass
         
 def hunt():
     try:
