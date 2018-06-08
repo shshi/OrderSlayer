@@ -3,8 +3,8 @@
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
 # Modified Date: 2018-06-07
-# Version: 3.1
-# Version Description: optimized refresh speed 
+# Version: 3.0
+# Version Description: optimized hunting speed by setting page load timeout and prohibiton of image load 
 #===========================================================
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -67,8 +67,9 @@ def slay():
         print 'slayed'
         print '\a' #播放提示音
         time.sleep(7)
-    except:
-        print "preview time"
+    except Exception as e:
+        print e
+        print '\a'
         slay()
         
 def refreshPg():
@@ -80,7 +81,7 @@ def refreshPg():
     except Exception as e:
         print e
         b.refresh()
-        time.sleep(3)
+        time.sleep(5)
         print "continue hunting..."
 
 def preView():
@@ -137,7 +138,7 @@ if __name__ == "__main__":
     print "initiating..."        
     login()
     limitYes = limit_YN()
-    b.get_screenshot_as_file('OrderCenter.png')  # 保存网页截图
+    b.get_screenshot_as_file('HuntingGround.png')  # 保存网页截图
     #print "current title: %s"%b.title
     print "hunting..."
     hunt()
