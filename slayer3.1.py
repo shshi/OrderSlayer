@@ -3,8 +3,8 @@
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
 # Modified Date: 2018-06-07
-# Version: 3.0
-# Version Description: optimized hunting speed by setting page load timeout and prohibiton of image load 
+# Version: 3.1
+# Version Description: optimized refresh speed 
 #===========================================================
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -80,6 +80,8 @@ def refreshPg():
     except Exception as e:
         print e
         b.refresh()
+        time.sleep(3)
+        print "continue hunting..."
 
 def preView():
     b.set_page_load_timeout(1)
