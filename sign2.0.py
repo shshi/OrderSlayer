@@ -31,6 +31,7 @@ def sign():
         try:
             txt_bf = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
             num_bf = re.findall(r"\d+", txt_bf)
+            print (num_bf)
         except Exception as e:
             print (e)
 
@@ -42,13 +43,15 @@ def sign():
         soup = BeautifulSoup(page,"html.parser")
         txt1 = soup.find_all('a', attrs={"id":"ySign"})[0].get_text().strip() #提取“已签到”文本
         print (txt1)
-        if len(txt1)==3:
+        #if len(txt1)==3:
+        if tx1==“已签到”:
             print ("Successfully signed")
         else:
             sendMail()
 
         txt_aft = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
         num_aft = re.findall(r"\d+", txt_aft)
+        print (num_aft)
         if num_bf<num_aft:
             print ("%ddays signed consecutively"%num_aft)
         else:
