@@ -26,6 +26,8 @@ def sign():
         html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址
 
         #签到前数据获取
+        page0 = s.get('http://talent.woordee.com/front/square').content
+        soup = BeautifulSoup(page0,"html.parser")
         try:
             txt_bf = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
             num_bf = re.findall(r"\d+", txt_bf)
@@ -46,7 +48,7 @@ def sign():
             sendMail()
 
         txt_aft = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
-        num_bf = re.findall(r"\d+", txt_bf)
+        num_aft = re.findall(r"\d+", txt_aft)
         if num_bf<num_aft:
             print ("%ddays signed consecutively"%num_aft)
         else:
