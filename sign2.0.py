@@ -31,7 +31,7 @@ def sign():
         try:
             txt_bf = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
             num_bf = re.findall(r"\d+", txt_bf)
-            print (num_bf)
+            print (txt_bf)
         except Exception as e:
             print (e)
 
@@ -51,7 +51,7 @@ def sign():
 
         txt_aft = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
         num_aft = re.findall(r"\d+", txt_aft)
-        print (num_aft)
+        print (txt_aft)
         if num_bf<num_aft:
             print ("%ddays signed consecutively"%num_aft)
         else:
