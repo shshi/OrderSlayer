@@ -27,7 +27,7 @@ def sign():
 
         #签到前数据获取
         page0 = s.get('http://talent.woordee.com/front/square').content
-        #reg = r"<a href='(.*?)'>The Beijing Hour"
+        page0=page0.decode('utf-8')
         reg = r'<em class="signedCount">(.*?)天</em>'
         num_re = re.compile(reg)
         A=re.findall(num_re,page0)
