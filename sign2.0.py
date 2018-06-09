@@ -36,7 +36,7 @@ def sign():
         soup = BeautifulSoup(page0,"html.parser")
         try:
             #txt_bf = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
-            txt_bf = soup.find_all('em', attrs={"class":"signedCount"}).string
+            txt_bf = soup.find_all('em', attrs={"class":"signedCount"})
             #num_bf = re.findall(r"\d+", txt_bf)
             print (txt_bf)
         except Exception as e:
