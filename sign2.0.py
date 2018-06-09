@@ -27,6 +27,11 @@ def sign():
 
         #签到前数据获取
         page0 = s.get('http://talent.woordee.com/front/square').content
+        #reg = r"<a href='(.*?)'>The Beijing Hour"
+        reg = r'<em class="signedCount">(.*?)天</em>'
+        num_re = re.compile(reg)
+        A=re.findall(num_re,page0)
+        print (A)
         soup = BeautifulSoup(page0,"html.parser")
         try:
             #txt_bf = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
@@ -56,9 +61,11 @@ def sign():
         if num_bf<num_aft:
             print ("%ddays signed consecutively"%num_aft)
         else:
-            sendMail()
+            pass
+            #sendMail()
     except:
-        sendMail()
+        pass
+        #sendMail()
 
 def sendMail():        
     print ("Failed in signing")
