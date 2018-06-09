@@ -26,8 +26,11 @@ def sign():
         html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址
 
         #签到前数据获取
-        txt_bf = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
-        num_bf = re.findall(r"\d+", txt_bf)
+        try:
+            txt_bf = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
+            num_bf = re.findall(r"\d+", txt_bf)
+        except Exception as e:
+            print (e)
 
         #签到操作
         s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到  
