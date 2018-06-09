@@ -43,8 +43,8 @@ def sign():
         soup = BeautifulSoup(page,"html.parser")
         txt1 = soup.find_all('a', attrs={"id":"ySign"})[0].get_text().strip() #提取“已签到”文本
         print (txt1)
-        #if len(txt1)==3:
-        if tx1==“已签到”:
+        if len(txt1)==3:
+        #if tx1==“已签到”:
             print ("Successfully signed")
         else:
             sendMail()
