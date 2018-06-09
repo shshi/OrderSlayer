@@ -41,7 +41,7 @@ def sign():
             print (txt_bf)
         except Exception as e:
             print (e)
-    except:
-        print ("error")
+    except Exception as e:
+        print (e)
 
 sign()
