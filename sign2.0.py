@@ -32,15 +32,16 @@ def sign():
         num_re = re.compile(reg)
         A=re.findall(num_re,page0)
         print (A)
+        print ("AAAAA")
         soup = BeautifulSoup(page0,"html.parser")
         try:
             #txt_bf = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text()
-            txt_bf = soup.find_all('em', attrs={"class":"signedCount"})
+            txt_bf = soup.find_all('em', attrs={"class":"signedCount"}).string
             #num_bf = re.findall(r"\d+", txt_bf)
             print (txt_bf)
         except Exception as e:
             print (e)
-
+'''
         #签到操作
         s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到  
 
@@ -49,8 +50,9 @@ def sign():
         soup = BeautifulSoup(page,"html.parser")
         txt1 = soup.find_all('a', attrs={"id":"ySign"})[0].get_text().strip() #提取“已签到”文本
         print (txt1)
-        if len(txt1)==3:
-        #if tx1==“已签到”:
+        #if len(txt1)==3:
+        string = “已签到”
+        if tx1==string.encode(‘utf-8’):
             print ("Successfully signed")
         else:
             sendMail()
@@ -84,5 +86,5 @@ def sendMail():
         print ("Successfully sent to %s"%msg['to'])
     except Exception as e:
         print (e)
-    
+'''    
 sign()
