@@ -60,7 +60,7 @@ def isElementExist(element):
         return False
 
 def slay():
-    b.set_page_load_timeout(180)
+    b.set_page_load_timeout(20)
     try:
         print "Game On"
         b.find_element_by_link_text("领取订单").click()
@@ -74,15 +74,20 @@ def slay():
         
 def refreshPg():
     try:
-        b.set_page_load_timeout(10)
+        b.set_page_load_timeout(20)
         #print "refresh"
         b.get("http://talent.woordee.com/front/task/taskCenter")
         #WebDriverWait(b, 7, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'like')))
     except Exception as e:
         print e
-        b.refresh()
-        time.sleep(5)
-        print "continue hunting..."
+        try:
+            print "trying refresh..."
+            b.refresh()
+            print "refresh done, continue hunting..."
+        except Exception as e:
+            print e
+            time.sleep(5)
+            print "continue hunting..."
 
 def preView():
     b.set_page_load_timeout(1)
