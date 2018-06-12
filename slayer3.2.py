@@ -4,7 +4,7 @@
 # E-mail:shi.sh@foxmail.com
 # Modified Date: 2018-06-12
 # Version: 3.2
-# Version Description: Use headless firefox instead of PhantomJS. Rapid, more stable.
+# Version Description: Use headless firefox instead of PhantomJS, which is rapid and more stable.
 #===========================================================
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
@@ -62,7 +62,7 @@ def isElementExist(element):
         return False
 
 def slay():
-    #d.set_page_load_timeout(10)
+    d.set_page_load_timeout(10)
     try:
         print "Game On"
         d.find_element_by_link_text("领取订单").click()
@@ -75,23 +75,17 @@ def slay():
         slay()
         
 def refreshPg():
-    try:
-        d.set_page_load_timeout(20)
+    d.set_page_load_timeout(10)
+    try:      
         #print "refresh"
         d.get("http://talent.woordee.com/front/task/taskCenter")
-        #WebDriverWait(d, 7, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'like')))
+        WebDriverWait(d, 7, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'like')))
     except Exception as e:
         print e
         print '\a'
         d.get_screenshot_as_file('Error.png')
         time.sleep(5)
-        try:
-            print "trying refresh method..."
-            d.refresh()
-            print "refresh done, continue hunting..."
-        except Exception as e:
-            print e
-            print "continue hunting..."
+        print "continue hunting..."
 
 def preView():
     d.set_page_load_timeout(1)
