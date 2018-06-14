@@ -83,8 +83,8 @@ def refreshPg():
     except Exception as e:
         print e
         print '\a'
-        d.get_screenshot_as_file('Error.png')
         time.sleep(5)
+        d.get_screenshot_as_file('Error.png')
         print "continue hunting..."
 
 def preView():
