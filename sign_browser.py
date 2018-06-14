@@ -37,7 +37,7 @@ def sign():
         logging.basicConfig(level=logging.DEBUG,  
                             format='%(asctime)s %(levelname)s %(message)s',  
                             datefmt='%a, %d %b %Y %H:%M:%S',  
-                            filename='./WE_log.log',  
+                            filename='./sign_log.log',  
                             filemode='a')
         logging.info('Successfully signed!')
 
@@ -52,3 +52,5 @@ if __name__ == "__main__":
     sign()
     time.sleep(7)
     d.quit()
+
+
