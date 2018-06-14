@@ -30,7 +30,7 @@ def getRed():
     try:
         d.get("http://talent.woordee.com/front/square.html")
         time.sleep(3)
-        txt = d.find_element_by_id("transAmount").text[1:-3]
+        txt = d.find_element_by_id("transAmount").text[1:-2]
         print "txt: %s"%txt
         amt = float (txt)
     except Exception as e:
