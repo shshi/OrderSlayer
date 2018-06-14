@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 #===========================================================
-# Name: redget
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
 # Modified Date: 2018-06-14
@@ -27,12 +26,23 @@ def sign():
     print "successfully logged in"
        
 def getRed():
-    d.get("http://talent.woordee.com/front/square.html")
-    while d.find_element_by_id("leftTime").is_displayed():
-        print "not yet"
+    d.set_page_load_timeout(10)
+    try:
+        d.get("http://talent.woordee.com/front/square.html")
+        time.sleep(3)
+        txt = d.find_element_by_id("transAmount").text[1:-3]
+        print "txt: %s"%txt
+        amt = float (txt)
+    except Exception as e:
+        print e
+        getRed()
+    #amt = soup.find_all('p', attrs={"id":"transAmount"})[0].get_text()
+    while amt < 100000:
+        print "%d, not yet"%amt
+        getRed()
     print "now!"
-    d.find_element_by_xpath('//*[@id="timeAtag"]').click()
-    #d.find_element_by_link_text('抢').click()   
+    print '\a'
+    d.find_element_by_xpath('/html/body/div[2]/div[1]/ul/li[2]/div[1]/a').click()   
     print "done"
 
 if __name__ == "__main__":
