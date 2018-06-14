@@ -158,5 +158,5 @@ if __name__ == "__main__":
     #print "current title: %s"%d.title
     print "hunting..."
     hunt()
-    print "finished"
+    print "the end"
     d.quit()
