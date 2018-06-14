@@ -22,7 +22,10 @@ def sign():
     d.find_element_by_xpath("//*[@onclick='login()']").click() 
     print "successfully logged in"
     d.get("http://talent.woordee.com/front/square.html")
-    d.find_element_by_xpath('//*[@id="ySign"]').click()
+    try:
+        d.find_element_by_xpath('//*[@id="nSign"]').click()
+    except:
+        print "signed done"
     if d.find_element_by_id("nSign").is_displayed():
         print "sign failed"
         while True:
@@ -49,5 +52,3 @@ if __name__ == "__main__":
     sign()
     time.sleep(7)
     d.quit()
-
-
