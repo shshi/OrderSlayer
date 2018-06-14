@@ -15,23 +15,28 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-def sign(b): 
-    b.find_element_by_id("loginPhone").send_keys("18209347100") 
-    b.find_element_by_id("password").send_keys("ssh19198918") 
-    b.find_element_by_xpath("//*[@onclick='login()']").click() 
+def sign():
+    d.get("http://talent.woordee.com/front/truser") 
+    d.find_element_by_id("loginPhone").send_keys("18209347100") 
+    d.find_element_by_id("password").send_keys("ssh19198918") 
+    d.find_element_by_xpath("//*[@onclick='login()']").click() 
     print "successfully logged in"
-    b.get("http://talent.woordee.com/front/square.html")
-    b.find_element_by_xpath('//*[@id="ySign"]').click()
-    print "successfully signed"
-
-def logFile():
-    # define the log file, file mode and logging level
-    logging.basicConfig(level=logging.DEBUG,  
-                        format='%(asctime)s %(levelname)s %(message)s',  
-                        datefmt='%a, %d %b %Y %H:%M:%S',  
-                        filename='./WE_log.log',  
-                        filemode='a')
-    logging.info('Successfully signed!')
+    d.get("http://talent.woordee.com/front/square.html")
+    d.find_element_by_xpath('//*[@id="ySign"]').click()
+    if d.find_element_by_id("nSign").is_displayed():
+        print "sign failed"
+        while True:
+            print '\a'
+            time.sleep(1)
+    else:
+        print "successfully signed"
+        # define the log file, file mode and logging level
+        logging.basicConfig(level=logging.DEBUG,  
+                            format='%(asctime)s %(levelname)s %(message)s',  
+                            datefmt='%a, %d %b %Y %H:%M:%S',  
+                            filename='./WE_log.log',  
+                            filemode='a')
+        logging.info('Successfully signed!')
 
 if __name__ == "__main__":
     firefoxProfile = FirefoxProfile()
@@ -39,9 +44,10 @@ if __name__ == "__main__":
     firefoxProfile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
     options = Options()
     options.add_argument('-headless')
-    b=webdriver.Firefox(firefoxProfile, firefox_options=options)
-    b.set_window_size(1600, 900)
-    b.get("http://talent.woordee.com/front/truser") #WE登录页
-    sign(b)
-    logFile()
-    b.quit()
+    d=webdriver.Firefox(firefoxProfile, firefox_options=options)
+    d.set_window_size(1600, 900)
+    sign()
+    time.sleep(7)
+    d.quit()
+
+
