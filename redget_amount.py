@@ -2,7 +2,7 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2018-06-14
+# Modified Date: 2018-06-15
 # Version: 1.0
 # Description: get red packet from talent.woordee.com
 #===========================================================
@@ -30,19 +30,38 @@ def getRed():
     try:
         d.get("http://talent.woordee.com/front/square.html")
         time.sleep(3)
-        txt = d.find_element_by_id("transAmount").text[1:-2]
-        print "txt: %s"%txt
-        amt = float (txt)
+        txt_bf = d.find_element_by_id("transAmount").text[1:-2]
+        #print "txt: %s"%txt
+        amt_bf = float (txt_bf)
     except Exception as e:
         print e
         getRed()
-    #amt = soup.find_all('p', attrs={"id":"transAmount"})[0].get_text()
-    while amt < 100000:
-        print "%d, not yet"%amt
-        getRed()
+    while amt_bf < 100000:
+        try:
+            d.get("http://talent.woordee.com/front/square.html")
+            time.sleep(3)
+            txt_aft = d.find_element_by_id("transAmount").text[1:-2]
+            amt_aft = float (txt_aft)
+        except Exception as e:
+            print e
+            print '\a'
+            print "continue listening..."
+            getRed()
+        if amt_bf == amt_aft:
+            getRed()
+        elif amt_aft >= 100000:       
+            print '\a'
+            break
+        else:
+            print "%d"%amt_aft
+            print '\a'
+            getRed()
     print "now!"
     print '\a'
-    d.find_element_by_xpath('/html/body/div[2]/div[1]/ul/li[2]/div[1]/a').click()   
+    d.find_elements_by_link_text('抢')[1].click()
+    d.find_elements_by_link_text('抢')[5].click()
+    #d.find_elements_by_class_name('redGet')[5].click()
+    #driver.find_element_by_css_selector("[type=submit]").click()
     print "done"
 
 if __name__ == "__main__":
@@ -51,8 +70,9 @@ if __name__ == "__main__":
     firefoxProfile.set_preference('permissions.default.image', 2) #禁加载图片
     firefoxProfile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false') #禁加载Flash
     options = Options()
-    options.add_argument('-headless') #无浏览器参数
+    #options.add_argument('-headless') #无浏览器参数
     d=webdriver.Firefox(firefoxProfile, firefox_options=options)
     d.set_window_size(1600, 900)
     sign()
+    print "listening..."
     getRed()
