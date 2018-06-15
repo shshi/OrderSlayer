@@ -2,7 +2,7 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2018-06-15
+# Modified Date: 2018-06-14
 # Version: 1.0
 # Description: get red packet from talent.woordee.com
 #===========================================================
@@ -36,7 +36,7 @@ def getRed():
     except Exception as e:
         print e
         getRed()
-    while amt_bf < 100000:
+    while amt_bf < 180000:
         try:
             d.get("http://talent.woordee.com/front/square.html")
             time.sleep(3)
@@ -49,7 +49,7 @@ def getRed():
             getRed()
         if amt_bf == amt_aft:
             getRed()
-        elif amt_aft >= 100000:       
+        elif amt_aft >= 180000:       
             print '\a'
             break
         else:
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     firefoxProfile.set_preference('permissions.default.image', 2) #禁加载图片
     firefoxProfile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false') #禁加载Flash
     options = Options()
-    #options.add_argument('-headless') #无浏览器参数
+    options.add_argument('-headless') #无浏览器参数
     d=webdriver.Firefox(firefoxProfile, firefox_options=options)
     d.set_window_size(1600, 900)
     sign()
