@@ -30,7 +30,7 @@ def sign():
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
-        style = re.compile(r'id="ySign" style="(.*?)">')
+        style = re.compile(r'id="nSign" style="(.*?)">')
         style_rst = re.findall(style, page)
         print (style_rst)
         unvisible = "none"
