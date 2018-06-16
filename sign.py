@@ -8,6 +8,7 @@
 # Description: sign at Woordee website  
 #===========================================================
 import requests
+import re
 from bs4 import BeautifulSoup
 import smtplib
 from email.mime.text import MIMEText
@@ -29,14 +30,22 @@ def sign():
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
-        soup = BeautifulSoup(page,"html.parser")
-        txt1 = soup.find_all('a', attrs={"id":"ySign"})[0].get_text().strip() #提取“已签到”文本
-        #txt2 = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text() #提取“连续签到n天”文本
-        print (txt1)
-        if len(txt1)==3:
-            print ("Successfully signed")
-        else:
+        style = re.compile(r'id="ySign" style="(.*?)">')
+        style_rst = re.findall(style, page)
+        print style_rst
+        #if style_rst == "display: none;"
+        if "none" in style_rst:
             sendMail()
+        else:
+            print ("Successfully signed")
+        #soup = BeautifulSoup(page,"html.parser")
+        #txt1 = soup.find_all('a', attrs={"id":"ySign"})[0].get_text().strip() #提取“已签到”文本
+        #txt2 = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text() #提取“连续签到n天”文本
+        #print (txt1)
+        #if len(txt1)==3:
+            #print ("Successfully signed")
+        #else:
+            #sendMail()
     except:
         sendMail()
 
