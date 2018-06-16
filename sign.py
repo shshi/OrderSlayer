@@ -39,10 +39,11 @@ def sign():
         if "none" in style_rst[0]:
             print ("Successfully signed")
         else:
-            sendMail()
+            print ("error")
+            #sendMail()
     except Exception as e:
         print (e)
-        sendMail()
+        #sendMail()
 
 def sendMail():        
     print ("Failed in signing")
