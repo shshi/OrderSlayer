@@ -20,13 +20,20 @@ def sign():
         s = requests.session()
         log_data = {'loginPhone':'18209347100','loginPassword':'ssh19198918'} #登录post数据
         sgn_data = {'translatorId':'WE16104633TR'} #签到post数据
+        headers = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"25",
+                   "Accept":"*/*", "Origin":"http://talent.woordee.com", "X-Requested-With":"XMLHttpRequest",
+                   "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
+                   "Content-Type":"application/x-www-form-urlencoded",
+                   "Referer":"http://talent.woordee.com/front/square",
+                   "Accept-Encoding":"gzip, deflate",
+                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",}
     
         #登录操作
         log = s.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址 
         html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址        
 
         #签到操作
-        s.post('http://talent.woordee.com/front/truser/sign', sgn_data) #触发签到  
+        s.post('http://talent.woordee.com/front/truser/sign', data=sgn_data, headers=headers) #触发签到  
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
