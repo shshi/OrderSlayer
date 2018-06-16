@@ -36,6 +36,7 @@ def sign():
 
         #签到操作
         s.post('http://talent.woordee.com/front/truser/sign', data=sgn_data, headers=headers) #触发签到  
+        print ("Yes!")
 
         #提取签到结果并打印     
         #page=page.decode('utf-8')
