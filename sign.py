@@ -31,19 +31,18 @@ def sign():
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
         page=page.decode('utf-8')
-        style = re.compile(r'id="nSign" style="(.*?)">')
+        style = re.compile(r'id="nSign"  style="(.*?)">')
         style_rst = re.findall(style, page)
-        print (page)
+        #print (page)
         print (style_rst)
         #if style_rst == "display: none;"
         if "none" in style_rst[0]:
             print ("Successfully signed")
         else:
-            print ("error")
-            #sendMail()
+            sendMail()
     except Exception as e:
         print (e)
-        #sendMail()
+        sendMail()
 
 def sendMail():        
     print ("Failed in signing")
