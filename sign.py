@@ -33,6 +33,7 @@ def sign():
         page=page.decode('utf-8')
         style = re.compile(r'id="ySign" style="(.*?)">')
         style_rst = re.findall(style, page)
+        print (page)
         print (style_rst)
         #if style_rst == "display: none;"
         if "none" in style_rst[0]:
