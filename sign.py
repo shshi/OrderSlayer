@@ -35,8 +35,10 @@ def sign():
         html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址
         page_bf = html.content
         page_bf = page_bf.decode('utf-8')
+        print (page_bf)
         count_bf_re = re.compile(r'<em class="signedCount">(.*?)天</em>')
         count_bf = re.findall(count_bf_re, page_bf)
+        print (count_bf)
         count_bf = float(count_bf[0])
         print (count_bf)
 
