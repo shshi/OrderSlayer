@@ -47,7 +47,8 @@ def sign():
             #print ("Successfully signed")
         #else:
             #sendMail()
-    except:
+    except Exception as e:
+        print (e)
         sendMail()
 
 def sendMail():        
