@@ -34,8 +34,7 @@ def sign():
         style = re.compile(r'id="nSign"  style="(.*?)">')
         style_rst = re.findall(style, page)
         #print (page)
-        print (style_rst)
-        #if style_rst == "display: none;"
+        #print (style_rst)
         if "none" in style_rst[0]:
             print ("Successfully signed")
         else:
