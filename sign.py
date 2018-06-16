@@ -9,7 +9,7 @@
 #===========================================================
 import requests
 import re
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -31,28 +31,18 @@ def sign():
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
         page=page.decode('utf-8')
-        style = re.compile(r'id="ySign" style="(.*?)">')
+        style = re.compile(r'id="nSign" style="(.*?)">')
         style_rst = re.findall(style, page)
-        print (page)
+        #print (page)
         print (style_rst)
         #if style_rst == "display: none;"
         if "none" in style_rst[0]:
-            print ("failed")
-            #sendMail()
-        else:
             print ("Successfully signed")
-        #soup = BeautifulSoup(page,"html.parser")
-        #txt1 = soup.find_all('a', attrs={"id":"ySign"})[0].get_text().strip() #提取“已签到”文本
-        #txt2 = soup.find_all('em', attrs={"class":"signedCount"})[0].get_text() #提取“连续签到n天”文本
-        #print (txt1)
-        #if len(txt1)==3:
-            #print ("Successfully signed")
-        #else:
-            #sendMail()
+        else:
+            sendMail()
     except Exception as e:
         print (e)
-        print ("failed")
-        #sendMail()
+        sendMail()
 
 def sendMail():        
     print ("Failed in signing")
