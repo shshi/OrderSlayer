@@ -32,7 +32,7 @@ def sign():
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
         style = re.compile(r'id="ySign" style="(.*?)">')
         style_rst = re.findall(style, page)
-        print style_rst
+        print (style_rst)
         #if style_rst == "display: none;"
         if "none" in style_rst[0]:
             sendMail()
