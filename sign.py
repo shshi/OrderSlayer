@@ -34,7 +34,7 @@ def sign():
         style_rst = re.findall(style, page)
         print style_rst
         #if style_rst == "display: none;"
-        if "none" in style_rst:
+        if "none" in style_rst[0]:
             sendMail()
         else:
             print ("Successfully signed")
