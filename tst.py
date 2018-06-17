@@ -32,7 +32,7 @@ def sign():
         log = session.post('http://talent.woordee.com/front/truser/login', data=log_data,) #post登录地址 
         r = session.get('http://talent.woordee.com/front/square') #get登陆后的地址
         r.html.render()
-        print (r)
+        #print (r)
         
         #print (r.content)
         #print (r.html.render())
