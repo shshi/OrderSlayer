@@ -41,7 +41,7 @@ def sign():
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
         page=page.decode('utf-8')
-        style_re = re.compile(r'id="ySign"  style="(.*?)">')
+        style_re = re.compile(r'id="ySign" style="(.*?)">')
         style = re.findall(style_re, page)
         #print (style)
         if "none" in style[0]:
