@@ -28,8 +28,8 @@ def sign():
                   }
     
         #登录操作
-        log = session.post('http://talent.woordee.com/front/truser/login', data=log_data, headers=headers) #post登录地址 
-        r = session.get('http://talent.woordee.com/front/square',headers=headers) #get登陆后的地址
+        log = session.post('http://talent.woordee.com/front/truser/login', data=log_data,) #post登录地址 
+        r = session.get('http://talent.woordee.com/front/square') #get登陆后的地址
         
         print (r.content)
         print (r.html.render())
