@@ -34,6 +34,7 @@ def sign():
         #登录操作
         log = s.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址 
         html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址
-except Exception as e:
-
+        html.json()
+    except Exception as e:
+        print (e)
 sign()
