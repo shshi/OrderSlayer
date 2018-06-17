@@ -8,13 +8,13 @@
 # Description: sign at Woordee website  
 #===========================================================
 import requests
-from requests_html import session
+from requests_html import HTMLSession
 import re
 
 def sign():
     try:
         #登录及签到post数据准备
-        #s = requests.session()
+        session = HTMLSession()
         log_data = {'loginPhone':'18209347100','loginPassword':'ssh19198918'} #登录post数据
         sgn_data = {'translatorId':'WE16104633TR'} #签到post数据
         headers = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"25",
@@ -30,6 +30,7 @@ def sign():
         #登录操作
         log = session.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址 
         r = session.get('http://talent.woordee.com/front/square') #get登陆后的地址
+        
         print r.content
         print r.html.render()
         
