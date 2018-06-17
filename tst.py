@@ -7,9 +7,10 @@
 # Version: 2.0
 # Description: sign at Woordee website  
 #===========================================================
-import requests
+#import requests
+import json
 from requests_html import HTMLSession
-import re
+#import re
 
 def sign():
     try:
