@@ -1,24 +1,12 @@
 # -*- coding:utf-8 -*-
-#===========================================================
-# Author：Sha0hua
-# E-mail:shi.sh@foxmail.com
-# Created Date: 2017-09-07
-# Modified Date: 2017-09-19
-# Version: 2.0
-# Description: sign at Woordee website  
-#===========================================================
 import requests
 import re
 #import json
-#from bs4 import BeautifulSoup
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 def sign():
     try:
         #登录及签到post数据准备
-        s = requests.session()
+        #s = requests.session()
         log_data = {'loginPhone':'18209347100','loginPassword':'ssh19198918'} #登录post数据
         sgn_data = {'translatorId':'WE16104633TR'} #签到post数据
         headers = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"25",
@@ -32,8 +20,8 @@ def sign():
                   }
     
         #登录操作
-        log = s.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址 
-        html = s.get('http://talent.woordee.com/front/square') #get登陆后的地址
+        log = requests.post('http://talent.woordee.com/front/truser/login', log_data) #post登录地址 
+        html = requests.get('http://talent.woordee.com/front/square') #get登陆后的地址
         html.json()
     except Exception as e:
         print (e)
