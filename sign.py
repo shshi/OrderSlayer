@@ -38,16 +38,16 @@ def sign():
         s.post('http://talent.woordee.com/front/truser/sign', data=sgn_data, headers=headers) #触发签到  
         print ("Yes!")
 
-        #提取签到结果并打印     
-        #page=page.decode('utf-8')
-        #style_re = re.compile(r'id="nSign"  style="(.*?)">')
-        #style = re.findall(style_re, page_aft)
-        #print (page)
+        #提取签到结果并打印
+        page = s.get('http://talent.woordee.com/front/square').content #重新get地址并获取页面源码
+        page=page.decode('utf-8')
+        style_re = re.compile(r'id="nSign"  style="(.*?)">')
+        style = re.findall(style_re, page_aft)
         #print (style)
-        #if "none" in style[0]:
-            #print ("Successfully signed")
-        #else:
-            #sendMail()
+        if "none" in style[0]:
+            print ("Successfully signed")
+        else:
+            sendMail()
     except Exception as e:
         print (e)
         sendMail()
