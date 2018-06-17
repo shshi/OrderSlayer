@@ -35,6 +35,6 @@ def sign():
         print (r.html.render())
         
     except Exception as e:
-        print e
+        print (e)
 
 sign()
