@@ -32,7 +32,7 @@ def sign():
         r = session.get('http://talent.woordee.com/front/square') #get登陆后的地址
         
         print (r.content)
-        print (r.html.render())
+        #print (r.html.render())
         
     except Exception as e:
         print (e)
