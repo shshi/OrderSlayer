@@ -8,8 +8,7 @@
 # Description: sign at Woordee website  
 #===========================================================
 import requests
-import re
-#from bs4 import BeautifulSoup
+import ast
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -63,7 +62,7 @@ def sign():
         print (type(page))
         stringed=str(page, encoding='utf-8') 
         print (stringed)
-        dic=eval(stringed)
+        dic=ast.literal_eval(stringed)
         print (dic)
         print (dic["hasSigned"])
         print (dic["signedCount"])
