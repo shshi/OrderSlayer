@@ -61,8 +61,11 @@ def sign():
         page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content #重新get地址并获取页面源码
         print (page)
         print (type(page))
-        print (page ["hasSigned"])
-        print (page["signedCount"])
+        stringed=str(page.payload, encoding = "utf-8")  
+        dic=eval(stringed)
+        print (dic)
+        print (dic["hasSigned"])
+        print (dic["signedCount"])
     except Exception as e:
         print (e)
         #sendMail()
