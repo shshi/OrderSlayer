@@ -52,7 +52,7 @@ def sign():
         page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content
         stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
-        Ba=float(dic['signedCbuerount'])
+        Ba=float(dic['signedCount'])
         #签到操作
         #s.post('http://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
         print ("Yes!")
@@ -62,7 +62,7 @@ def sign():
         stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         A=dic['hasSigned']
-        Bb=float(dic['signedCbuerount'])
+        Bb=float(dic['signedCount'])
         print (Ba)
         print (type(Ba))        
         print (Bb)
