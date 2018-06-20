@@ -33,7 +33,7 @@ def sign():
                    "Referer":"http://talent.woordee.com/front/square",
                    "Accept-Encoding":"gzip, deflate",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "gr_user_id=5ada753b-6053-4862-992d-609e344b0097; UM_distinctid=162fd37c4ed35a-0f9b591b54436c-7b113d-130980-162fd37c4ee296; CNZZDATA1261954912=526383338-1505555533-%7C1529057341; WOORDEE_SID=8d5dd8df6dc4433f884e1fc8707f30c3"
+                   "Cookie": "gr_user_id=5ada753b-6053-4862-992d-609e344b0097; UM_distinctid=162fd37c4ed35a-0f9b591b54436c-7b113d-130980-162fd37c4ee296; CNZZDATA1261954912=526383338-1505555533-%7C1529417456; WOORDEE_SID=c79c457e7b054ef88b691f8d236752d3"
                   }
         sign_data = {'translatorId':'WE16104633TR'} #签到post数据        
         headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
