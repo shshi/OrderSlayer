@@ -58,7 +58,7 @@ def sign():
         print ("Yes!")
 
         #提取签到结果并打印
-        page = s.get('http://talent.woordee.com/front/square', headers=headers_square).content #重新get地址并获取页面源码
+        page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content #重新get地址并获取页面源码
         print (page)
          
     except Exception as e:
