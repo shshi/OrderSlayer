@@ -15,7 +15,7 @@ from email.mime.multipart import MIMEMultipart
 def sign():
     try:
         #登录及签到post数据准备
-        s = requests.session()
+        s = requests.session()        
         headers_login = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"125",
                    "Accept":"*/*", "Origin":"http://talent.woordee.com", "X-Requested-With":"XMLHttpRequest",
                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
@@ -25,8 +25,7 @@ def sign():
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
                    "Cookie": "gr_user_id=5ada753b-6053-4862-992d-609e344b0097; UM_distinctid=162fd37c4ed35a-0f9b591b54436c-7b113d-130980-162fd37c4ee296; CNZZDATA1261954912=526383338-1505555533-%7C1529417456; WOORDEE_SID=c79c457e7b054ef88b691f8d236752d3"
                   }
-        login_data = {'loginPhone':'18209347100','loginPassword':'11221135d35eacd2de7b136d15be0662','loginLowerCasePassword':'11221135d35eacd2de7b136d15be0662'} #登录post数据
-        
+        login_data = {'loginPhone':'18209347100','loginPassword':'11221135d35eacd2de7b136d15be0662','loginLowerCasePassword':'11221135d35eacd2de7b136d15be0662'} #登录post数据        
         headers_sign = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"25",
                    "Accept":"*/*", "Origin":"http://talent.woordee.com", "X-Requested-With":"XMLHttpRequest",
                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
@@ -36,7 +35,7 @@ def sign():
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
                    "Cookie": "gr_user_id=5ada753b-6053-4862-992d-609e344b0097; UM_distinctid=162fd37c4ed35a-0f9b591b54436c-7b113d-130980-162fd37c4ee296; CNZZDATA1261954912=526383338-1505555533-%7C1529057341; WOORDEE_SID=8d5dd8df6dc4433f884e1fc8707f30c3"
                   }
-        sign_data = {'translatorId':'WE16104633TR'} #签到post数据
+        sign_data = {'translatorId':'WE16104633TR'} #签到post数据        
         headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
                     #"X-Requested-With": "XMLHttpRequest",
@@ -48,34 +47,34 @@ def sign():
                   }
     
         #登录操作
-        log = s.post('http://talent.woordee.com/front/truser/login', data=login_data, headers=headers_login) #post登录地址 
+        log = s.post('http://talent.woordee.com/front/truser/login', data=login_data, headers=headers_login) #post登录地址
+        
+        #签到前数据获取
         page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content
         stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         Ba=float(dic['signedCount'])
+        
         #签到操作
-        #s.post('http://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
+        s.post('http://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
         print ("Yes!")
 
-        #提取签到结果并打印
-        page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content #重新get地址并获取页面源码
+        #签到后数据获取
+        page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content
         stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         A=dic['hasSigned']
         Bb=float(dic['signedCount'])
-        print (Ba)
-        print (type(Ba))        
-        print (Bb)
-        print (type(Bb))
+        
+        #判断签到成功与否
         if A=='True' and Bb>Ba:
             print ("sccucessfully signed")
         else:
-            print ("failed")
-            #sendMail()
+            sendMail()
 
     except Exception as e:
         print (e)
-        #sendMail()
+        sendMail()
 
 def sendMail():        
     print ("Failed in signing")
