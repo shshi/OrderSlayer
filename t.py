@@ -61,6 +61,7 @@ def sign():
 
         #签到后数据获取
         page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content
+        print (page)
         stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         A=dic['hasSigned']
@@ -68,7 +69,7 @@ def sign():
         print (A)
         
         #判断签到成功与否
-        if A=='True':
+        if A=='true':
             print ("sccucessfully signed")
         else:
             print ("failed")
