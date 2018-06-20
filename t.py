@@ -61,7 +61,7 @@ def sign():
         page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content #重新get地址并获取页面源码
         print (page)
         print (type(page))
-        stringed=page.decode() 
+        stringed=page.decode('ascii') 
         dic=eval(stringed)
         print (dic)
         print (dic["hasSigned"])
