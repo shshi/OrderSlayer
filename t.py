@@ -8,7 +8,6 @@
 # Description: sign at Woordee website  
 #===========================================================
 import requests
-import ast
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
