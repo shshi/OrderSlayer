@@ -55,16 +55,14 @@ def sign():
 
         #签到操作
         s.post('http://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
-        print "Yes!"
+        print ("Yes!")
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square', headers=headers_square).content #重新get地址并获取页面源码
-        f = open('ajax.log', 'w')
-        f.write('%s'%page)
-        #print (page)
+        print (page)
          
     except Exception as e:
-        print e
+        print (e)
         #sendMail()
 
 def sendMail():        
