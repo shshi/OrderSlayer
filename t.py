@@ -62,8 +62,8 @@ def sign():
         print (type(page))
         stringed=str(page, encoding='utf-8') 
         print (stringed)
-        dic=ast.literal_eval(stringed)
-        print (repr(dic))
+        dict(toks.split(":") for toks in stringed.split(";") if toks)
+        print (dic)
         print (dic["hasSigned"])
         print (dic["signedCount"])
     except Exception as e:
