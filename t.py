@@ -59,7 +59,8 @@ def sign():
         page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content #重新get地址并获取页面源码
         #print (page)
         #print (type(page))
-        stringed=str(page, encoding='utf-8').strip("\"")
+        stringed=str(page, encoding='utf-8')
+        stringed=eval(stringed)
         print (stringed)
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         print (dic)
