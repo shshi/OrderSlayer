@@ -8,7 +8,7 @@
 # Description: sign at Woordee website  
 #===========================================================
 import requests
-import json
+import ast
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -62,7 +62,7 @@ def sign():
         #print (type(page))
         stringed=str(page, encoding='utf-8').replace('\"', '')
         print (stringed)
-        dic = json.loads(stringed)
+        dic = ast.literal_eval(stringed)
         #dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         print (dic)
         print (dic['hasSigned'])
