@@ -61,7 +61,7 @@ def sign():
         print (type(page))
         stringed=str(page, encoding='utf-8') 
         print (stringed)
-        dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
+        dic = dict(toks.split(":") for toks in stringed.strip("\"").split(",") if toks)
         print (dic)
         print (dic["hasSigned"])
         print (dic["signedCount"])
