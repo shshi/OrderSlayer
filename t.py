@@ -49,25 +49,30 @@ def sign():
     
         #登录操作
         log = s.post('http://talent.woordee.com/front/truser/login', data=login_data, headers=headers_login) #post登录地址 
-        #html = s.get('http://talent.woordee.com/front/square', headers=headers_square) #get登陆后的地址
-
+        page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content
+        stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
+        dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
+        Ba=float(dic['signedCbuerount'])
         #签到操作
         #s.post('http://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
         print ("Yes!")
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content #重新get地址并获取页面源码
-        #print (page)
-        #print (type(page))
         stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
-        #print (stringed)
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
-        #print (dic)
         A=dic['hasSigned']
-        B=dic['signedCount']
-        print (type(A))
-        print (type(B))
-        #if dic["hasSigned"] == ""
+        Bb=float(dic['signedCbuerount'])
+        print (Ba)
+        print (type(Ba))        
+        print (Bb)
+        print (type(Bb))
+        if A=='True' and Bb>Ba:
+            print ("sccucessfully signed")
+        else:
+            print ("failed")
+            #sendMail()
+
     except Exception as e:
         print (e)
         #sendMail()
