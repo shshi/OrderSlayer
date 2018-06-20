@@ -57,11 +57,11 @@ def sign():
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/getSignData', headers=headers_square).content #重新get地址并获取页面源码
-        print (page)
-        print (type(page))
-        stringed=str(page, encoding='utf-8') 
+        #print (page)
+        #print (type(page))
+        stringed=str(page, encoding='utf-8').strip("\"")
         print (stringed)
-        dic = dict(toks.split(":") for toks in stringed.strip("\"").split(",") if toks)
+        dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         print (dic)
         print (dic["hasSigned"])
         print (dic["signedCount"])
