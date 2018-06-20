@@ -67,7 +67,7 @@ def sign():
         Bb=float(dic['signedCount'])
         
         #判断签到成功与否
-        if A=='True' and Bb>Ba:
+        if A=='true' and Bb>Ba:
             print ("sccucessfully signed")
         else:
             sendMail()
