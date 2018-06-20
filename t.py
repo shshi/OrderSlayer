@@ -60,7 +60,7 @@ def sign():
         #print (page)
         #print (type(page))
         stringed=str(page, encoding='utf-8')
-        stringed=eval(stringed)
+        stringed=stringed.replace('\"', '')
         print (stringed)
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         print (dic)
