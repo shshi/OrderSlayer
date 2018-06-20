@@ -56,7 +56,7 @@ def sign():
         Ba=float(dic['signedCount'])
         
         #签到操作
-        s.post('http://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
+        #s.post('http://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
         print ("Yes!")
 
         #签到后数据获取
@@ -67,7 +67,7 @@ def sign():
         Bb=float(dic['signedCount'])
         
         #判断签到成功与否
-        if A=='True' and Bb>Ba:
+        if A=='True':
             print ("sccucessfully signed")
         else:
             sendMail()
