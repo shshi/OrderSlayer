@@ -63,7 +63,7 @@ def sign():
         stringed=str(page, encoding='utf-8') 
         print (stringed)
         dic=ast.literal_eval(stringed)
-        print (dic)
+        print (repr(dic))
         print (dic["hasSigned"])
         print (dic["signedCount"])
     except Exception as e:
