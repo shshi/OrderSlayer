@@ -58,7 +58,7 @@ def sign():
 
         #提取签到结果并打印
         page = s.get('http://talent.woordee.com/front/square', headers=headers_square).content #重新get地址并获取页面源码
-        print (page)
+        #print (page)
         page=page.decode('utf-8')
         style_re = re.compile(r'id="nSign"  style="(.*?)">')
         style = re.findall(style_re, page)
