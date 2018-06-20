@@ -39,7 +39,7 @@ def sign():
         sign_data = {'translatorId':'WE16104633TR'} #签到post数据
         headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
-                    "X-Requested-With": "XMLHttpRequest",
+                    #"X-Requested-With": "XMLHttpRequest",
                    "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
                    "Referer":"http://talent.woordee.com/front/truser/userCenter",
                    "Accept-Encoding":"gzip, deflate",
@@ -49,7 +49,7 @@ def sign():
     
         #登录操作
         log = s.post('http://talent.woordee.com/front/truser/login', data=login_data, headers=headers_login) #post登录地址 
-        html = s.get('http://talent.woordee.com/front/square', headers=headers_square) #get登陆后的地址
+        #html = s.get('http://talent.woordee.com/front/square', headers=headers_square) #get登陆后的地址
 
         #签到操作
         #s.post('http://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
