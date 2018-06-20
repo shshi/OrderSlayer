@@ -65,12 +65,14 @@ def sign():
         dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
         A=dic['hasSigned']
         Bb=float(dic['signedCount'])
+        print (A)
         
         #判断签到成功与否
         if A=='True':
             print ("sccucessfully signed")
         else:
-            sendMail()
+            print ("failed")
+            #sendMail()
 
     except Exception as e:
         print (e)
