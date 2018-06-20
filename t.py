@@ -3,8 +3,8 @@
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
 # Created Date: 2017-09-07
-# Modified Date: 2017-09-19
-# Version: 2.0
+# Modified Date: 2018-06-20
+# Version: 3.0
 # Description: sign at Woordee website  
 #===========================================================
 import requests
