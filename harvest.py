@@ -2,8 +2,9 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2018-09-11
-# Description: Harvest red package in Circle
+# Modified Date: 2018-06-15
+# Version: 3.3
+# Version Description: added switch sate check
 #===========================================================
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
@@ -46,10 +47,12 @@ def Harvest():
             if "恭喜" in txt:
                 n+=1
                 print "No.%d"%n
+                d.find_element_by_xpath('/html/body/div[8]/div/a[2]').click() #关闭红包窗口
                 continue
             else:
                 expired = 1
                 print "exprired left"
+                d.find_element_by_xpath('/html/body/div[8]/div/a[2]').click() #关闭红包窗口
                 break              
         if expired == 0:
             print "P2"
