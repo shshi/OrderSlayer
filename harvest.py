@@ -33,7 +33,7 @@ def login():
         print "timeout"
 
 def Harvest():
-    expired = 0
+    #expired = 0
     d.get('http://talent.woordee.com/front/circle/circleHome/b923cb623ffc411ca9939f8d012ef5ec')
     print "checking..."
     list_get = d.find_elements_by_link_text("领红包>")
@@ -43,21 +43,22 @@ def Harvest():
         for i in list_get:
             i.click()
             d.find_element_by_xpath('/html/body/div[5]/div/a[1]').click()
-            txt = d.find_element_by_xpath('/html/body/div[8]/div/div/p').text
+            txt = d.find_element_by_xpath('/html/body/div[6]/div/div/p').text
             if "恭喜" in txt:
                 n+=1
                 print "No.%d"%n
-                d.find_element_by_xpath('/html/body/div[8]/div/a[2]').click() #关闭红包窗口
+                d.find_element_by_xpath('/html/body/div[6]/div/a').click() #关闭红包窗口
                 continue
             else:
-                expired = 1
+                #expired = 1
                 print "exprired left"
-                d.find_element_by_xpath('/html/body/div[8]/div/a[2]').click() #关闭红包窗口
+                d.find_element_by_xpath('/html/body/div[6]/div/a').click() #关闭红包窗口
                 break              
-        if expired == 0:
-            print "P2"
-        else:
-            pass
+        while n == 15:
+            print "more content"
+            d.find_element_by_xpath('//*[@id="showMoreDiv"]/a').click()
+            time.sleep(3)
+            Harvest()
     else:
         print "No new red package"   
         
