@@ -29,12 +29,17 @@ def login():
         d.find_element_by_id("password").send_keys("ssh19198918") #输入密码
         d.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
         WebDriverWait(d, 20, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'myCode')))
+        d.get('http://talent.woordee.com/front/circle/circleHome/b923cb623ffc411ca9939f8d012ef5ec')
     except:
         print "timeout"
 
+def ShowMore():
+    js = "document.getElementById('showMoreDiv').style.display='block'"
+    d.execute_script(js)
+    d.find_element_by_xpath('//*[@id="showMoreDiv"]/a').click()
+    time.sleep(3)
+
 def Harvest():
-    #expired = 0
-    d.get('http://talent.woordee.com/front/circle/circleHome/b923cb623ffc411ca9939f8d012ef5ec')
     print "checking..."
     list_get = d.find_elements_by_link_text("领红包>")
     #print list_get
@@ -50,14 +55,11 @@ def Harvest():
                 d.find_element_by_xpath('/html/body/div[6]/div/a').click() #关闭红包窗口
                 continue
             else:
-                #expired = 1
                 print "exprired left"
-                d.find_element_by_xpath('/html/body/div[6]/div/a').click() #关闭红包窗口
                 break              
         while n == 15:
             print "more content"
-            d.find_element_by_xpath('//*[@id="showMoreDiv"]/a').click()
-            time.sleep(3)
+            ShowMore()
             Harvest()
     else:
         print "No new red package"   
