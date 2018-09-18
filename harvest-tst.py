@@ -42,6 +42,7 @@ def ShowMore():
 
 def CutLoop():
     print "checking..."
+    global n
     n=0
     list_get = d.find_elements_by_link_text("领红包>")
     #print list_get
@@ -65,7 +66,8 @@ def CutLoop():
     else:
         print "No new red package"
 
-def Harvest():   
+def Harvest():
+    global Sum
     Sum=0
     rop=0
     CutLoop()      
