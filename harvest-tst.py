@@ -15,6 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 import time
+import re
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -33,29 +34,50 @@ def login():
     except:
         print "timeout"
 
-def Harvest():
+def ShowMore():
+    js = "document.getElementById('showMoreDiv').style.display='block'"
+    d.execute_script(js)
+    d.find_element_by_xpath('//*[@id="showMoreDiv"]/a').click()
+    time.sleep(3)
+
+def CutLoop():
     print "checking..."
-    list_get = d.find_elements_by_link_text("红包已领取>")
+    n=0
+    list_get = d.find_elements_by_link_text("领红包>")
     #print list_get
     if list_get:
-        n=0
-        Sum=0
         for i in list_get:
-            global Sum
             i.click()
-            n+=1
-            amt_str=str(d.find_element_by_xpath('/html/body/div[7]/div/span[2]').text) #获取红包金额
-            #amt_num=filter(str.isdigit, amt_str)
-            amt_num=filter(lambda ch: ch in '0123456789.', amt_str)
-            amt_num=float(amt_num)
-            print "No.%d. %f"%(n, amt_num)
-            #tmp=amt_num+Sum
-            #Sum=tmp
-            Sum+=amt_num
-            d.find_element_by_xpath('/html/body/div[7]/div/a').click() #关闭红包窗口
-        print "sum: %d"%Sum
+            d.find_element_by_xpath('/html/body/div[5]/div/a[1]').click() #点击打开红包
+            txt = d.find_element_by_xpath('/html/body/div[6]/div/div/p').text #获取窗口文字文本
+            if "恭喜" in txt:
+                n+=1
+                amt_str=str(d.find_element_by_xpath('/html/body/div[6]/div/span[2]').text) #获取红包金额
+                amt_num=filter(lambda ch: ch in '0123456789.', amt_str)
+                amt_num=float(amt_num)
+                print "No.%d. %f"%(n, amt_num)
+                Sum+=amt_num
+                d.find_element_by_xpath('/html/body/div[6]/div/a').click() #关闭红包窗口
+                continue
+            else:
+                print "exprired left"
+                break
     else:
-        print "No new red package"   
+        print "No new red package"
+
+def Harvest():   
+    Sum=0
+    rop=0
+    CutLoop()      
+    while n == 15:
+        print "more content"
+        rop+=1
+        b.refresh()
+        for x in range(rop):
+            ShowMore()
+        CutLoop()
+    print "sum: %f"%Sum
+   
         
 if __name__ == "__main__":
     firefoxProfile = FirefoxProfile()
@@ -68,7 +90,6 @@ if __name__ == "__main__":
     d.set_window_size(1600, 900)
     print "initiating..."        
     login()
-    rop=0
     Harvest()
     print "the end"
     #d.quit()
