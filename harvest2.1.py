@@ -93,4 +93,5 @@ if __name__ == "__main__":
     H.login()
     H.Harvest()
     print "the end"
-    #d.quit()
+    time.sleep(12)
+    d.quit()
