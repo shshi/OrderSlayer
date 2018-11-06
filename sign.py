@@ -56,6 +56,4 @@ def sign():
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #触发签到  
         print ("Yes!")
 
-        #签到后数据获取
-    
 sign()
