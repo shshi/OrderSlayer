@@ -55,5 +55,7 @@ def sign():
         #签到操作
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #触发签到  
         print ("Yes!")
-
+    except Exception as e:
+        print (e)
+        
 sign()
