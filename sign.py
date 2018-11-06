@@ -23,7 +23,7 @@ def sign():
                    "Referer":"http://talent.woordee.com/front/truser.html",
                    "Accept-Encoding":"gzip, deflate",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "_uab_collina=154139283253526626410393; SESSION=6fdb29a3-8943-42af-b7dc-61c3d5b14558"
+                   "Cookie": "SESSION=6fdb29a3-8943-42af-b7dc-61c3d5b14558"
                   }
         login_data = {'loginPhone':'18209347100','loginPassword':'11221135d35eacd2de7b136d15be0662','loginLowerCasePassword':'11221135d35eacd2de7b136d15be0662'} #登录post数据        
         headers_sign = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"25",
@@ -50,33 +50,14 @@ def sign():
         log = s.post('https://talent.woordee.com/users/login', data=login_data, headers=headers_login) #post登录地址
         
         #签到前数据获取
-        page = s.get('https://talent.woordee.com/getSignData', headers=headers_square).content
-        stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
-        dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
-        Ba=float(dic['signedCount'])
+        print ("logged in")
         
         #签到操作
-        s.post('https://talent.woordee.com/front/truser/sign', data=sign_data, headers=headers_sign) #触发签到  
+        s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #触发签到  
         print ("Yes!")
 
         #签到后数据获取
-        page = s.get('https://talent.woordee.com/getSignData', headers=headers_square).content
-        stringed=str(page, encoding='utf-8').replace('\"', '').lstrip("{").rstrip("}")
-        dic = dict(toks.split(":") for toks in stringed.split(",") if toks)
-        A=dic['hasSigned']
-        Bb=float(dic['signedCount'])
-        print("hasSgined: %s"%A)
-        print("signedCount: %ddays"%Bb)
-        
-        #判断签到成功与否
-        if A=='true' and Bb>Ba:
-            print ("sccucessfully signed")
-        else:
-            sendMail()
 
-    except Exception as e:
-        print (e)
-        sendMail()
 
 def sendMail():        
     print ("Failed in signing")
