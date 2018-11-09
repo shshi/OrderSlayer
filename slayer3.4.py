@@ -31,7 +31,7 @@ def login():
         d.find_element_by_id("password").send_keys("ssh19198918") #输入密码
         #d.find_element_by_class_name("green-btn submit-btn").click() #触发登录
         d.find_element_by_xpath("/html/body/div[2]/div/div[2]/form/input").click()
-        WebDriverWait(d, 20, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'myCode')))
+        #WebDriverWait(d, 20, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'myCode')))
     except Exception as e:
         print e
         print "timeout"
@@ -69,7 +69,7 @@ def limit_YN():
 
 def isElementExist(element):
     try:
-        d.find_element_by_id(element)
+        d.find_element_by_class_name(element)
         return True
     except:
         return False
@@ -78,7 +78,7 @@ def slay():
     d.set_page_load_timeout(10)
     try:
         print "game on"
-        d.find_element_by_link_text("领取订单").click()
+        d.find_element_by_link_text("领取").click()
         print 'slayed'
         print '\a' #播放提示音
         time.sleep(7)
@@ -92,7 +92,7 @@ def refreshPg():
     try:      
         #print "refresh"
         d.get("https://talent.woordee.com/task/center")
-        WebDriverWait(d, 7, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'like')))
+        #WebDriverWait(d, 7, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'like')))
     except Exception as e:
         print e
         print '\a'
@@ -103,38 +103,27 @@ def refreshPg():
 def preView():
     d.set_page_load_timeout(1)
     try:
-        d.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').click() #点击“预览”
+        d.find_element_by_class_name('preview-btn').click() #点击“预览”
     except:
         pass
         
 def hunt():
     try:
-        if isElementExist("mCSB_1_container"): #判断是否存在“预览”，亦即判断是否有单           
-            if d.find_element_by_xpath('//*[@id="mCSB_1_container"]/div/a').is_displayed(): #判断“预览”是否显示，亦即判断是否有新单          
-                print 'new order found'
-                preView()             
-                if limitYes:
-                    txt_word = d.find_element_by_xpath("//*[@class='words col-xs-12 col-md-2 nonePadding']").text[0:-3] #获取订单字数
-                    num_word = float (txt_word) #转换订单字数为数值类型
-                    print "%d words order"%num_word
-                    if num_word <= limit:
-                        slay()
-                    else: 
-                        print "over %d words. continue hunting..."%limit
-
-                        #保存页面源码
-                        #page = d.page_source
-                        #log = open('aftPreview.html', 'w')
-                        #log.write(page)
-                        #log.close()
-                            
-                        refreshPg()
-                        hunt()
-                else: #若无字数限制
+        if isElementExist("preview-btn"): #判断是否存在“预览”，亦即判断是否有单              
+            print 'new order found'
+            preView()             
+            if limitYes:
+                txt_word = d.find_element_by_class_name("order-word").text[0:-1] #获取订单字数
+                num_word = float (txt_word) #转换订单字数为数值类型
+                print "%d words order"%num_word
+                if num_word <= limit:
                     slay()
-            else: #若“预览”不显示
-                refreshPg()
-                hunt()
+                else: 
+                    print "over %d words. continue hunting..."%limit
+                    refreshPg()
+                    hunt()
+            else: #若无字数限制
+                slay()
         else: #若不存在“预览”
             refreshPg() #刷新页面
             hunt()
@@ -152,7 +141,7 @@ if __name__ == "__main__":
     firefoxProfile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false') #禁加载Flash
     firefoxProfile.accept_untrusted_certs = True
     options = Options()
-    #options.add_argument('-headless') #无浏览器参数
+    options.add_argument('-headless') #无浏览器参数
     d=webdriver.Firefox(firefoxProfile, firefox_options=options)
     d.set_window_size(1600, 900)
     print "initiating..."        
