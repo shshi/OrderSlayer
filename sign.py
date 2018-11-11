@@ -6,151 +6,50 @@
 # Version: 3.3
 # Version Description: added switch sate check
 #===========================================================
-from selenium import webdriver
-from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
-from selenium.webdriver.firefox.options import Options
+import requests
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-
-import time
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
-sys.setrecursionlimit(1000000) #设置最大递归次数（若不设置，默认值为998，递归998次后将出现"maximum recursion depth exceeded"的报错）
- 
-def login():
-    d.get('https://talent.woordee.com/')
-    d.find_element_by_class_name("login-btn").click()
-    d.get('https://talent.woordee.com/users/login')#WE登录页
-    time.sleep(10)
-    print "logging in..."
+def sign():
     try:
-        d.find_element_by_class_name("tel").send_keys("18209347100") #输入手机号
-        d.find_element_by_id("password").send_keys("ssh19198918") #输入密码
-        #d.find_element_by_class_name("green-btn submit-btn").click() #触发登录
-        d.find_element_by_xpath("/html/body/div[2]/div/div[2]/form/input").click()
-        #WebDriverWait(d, 20, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'myCode')))
-    except Exception as e:
-        print e
-        print "timeout"
-    try:
-        d.get("https://talent.woordee.com/task/center") #进入"订单中心"页面
-        print "successfully logged in"
-    except:
-        print "successfully logged in (timeout)"
-
-def switchOn():
-    txt_off = "已关闭"
-    state_bf = d.find_element_by_xpath('//*[@id="bs-example-navbar-collapse-1"]/ul[1]/li[1]/span').text
-    if txt_off in state_bf:
-        d.find_element_by_xpath('//*[@id="bs-example-navbar-collapse-1"]/ul[1]/li[1]/a/i').click()
-        print "switch turned on"
-    else:
-        print "switch was on, no need to change"
-
-def limit_YN():
-    yn = raw_input('need a word limit?[Y/N] ')
-    while yn != "Y" and yn != "N":
-        print "wrong input, please input again(just type 'Y' or 'N') "
-        yn = raw_input('need a word limit?[Y/N] ')
-    if yn == "Y":
-        global limit
-        while True:
-            try:
-                limit = input('please input the limit: ')
-                return True
-            except:
-                print "this is not a digit, please input again"
-                continue
-    else:
-        return False
-
-def isElementExist(element):
-    try:
-        d.find_element_by_class_name(element)
-        return True
-    except:
-        return False
-
-def slay():
-    d.set_page_load_timeout(10)
-    try:
-        print "game on"
-        d.find_element_by_link_text("领取").click()
-        print 'slayed'
-        print '\a' #播放提示音
-        time.sleep(7)
-    except Exception as e:
-        print e
-        print '\a'
-        slay()
+        s = requests.session()        
+        headers_login = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"125",
+                   "Accept":"*/*", "Origin":"https://talent.woordee.com", "X-Requested-With":"XMLHttpRequest",
+                   "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
+                   "Content-Type":"application/x-www-form-urlencoded",
+                   "Referer":"https://talent.woordee.com/users/login",
+                   "Accept-Encoding":"gzip, deflate",
+                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
+                   "Cookie": "_uab_collina=154139283253526626410393; SESSION=6fdb29a3-8943-42af-b7dc-61c3d5b14558"
+                  }
+        login_data = {'loginPhone':'18209347100','loginPassword':'11221135d35eacd2de7b136d15be0662','loginLowerCasePassword':'11221135d35eacd2de7b136d15be0662'} #ç»å½postæ°æ®        
+        headers_sign = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"0",
+                   "Accept":"*/*", "Origin":"https://talent.woordee.com", "X-Requested-With":"XMLHttpRequest",
+                   "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
+                   "Content-Type":"application/x-www-form-urlencoded",
+                   "Referer":"https://talent.woordee.com/square/center",
+                   "Accept-Encoding":"gzip, deflate",
+                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
+                   "Cookie": "SESSION=6fdb29a3-8943-42af-b7dc-61c3d5b14558"
+                  }
+        sign_data = {'translatorId':'WE16104633TR'}       
+        headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
+                   "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
+                    #"X-Requested-With": "XMLHttpRequest",
+                   "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+                   "Referer":"http://talent.woordee.com/front/truser/userCenter",
+                   "Accept-Encoding":"gzip, deflate",
+                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
+                   "Cookie": "_uab_collina=154139283253526626410393; SESSION=6fdb29a3-8943-42af-b7dc-61c3d5b14558"
+                  }
+    
+        #ç»å½æä½
+        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login) #
         
-def refreshPg():
-    d.set_page_load_timeout(10)
-    try:      
-        #print "refresh"
-        d.get("https://talent.woordee.com/task/center")
-        #WebDriverWait(d, 7, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'like')))
-    except Exception as e:
-        print e
-        print '\a'
-        time.sleep(5)
-        d.get_screenshot_as_file('Error.png')
-        print "continue hunting..."
-
-def preView():
-    d.set_page_load_timeout(1)
-    try:
-        d.find_element_by_class_name('preview-btn').click() #点击“预览”
-    except:
-        pass
+        #ç­¾å°åæ°æ®è·å
+        print ("logged in")
         
-def hunt():
-    try:
-        if isElementExist("preview-btn"): #判断是否存在“预览”，亦即判断是否有单              
-            print 'new order found'
-            preView()             
-            if limitYes:
-                txt_word = d.find_element_by_class_name("order-word").text[0:-1] #获取订单字数
-                num_word = float (txt_word) #转换订单字数为数值类型
-                print "%d words order"%num_word
-                if num_word <= limit:
-                    slay()
-                else: 
-                    print "over %d words. continue hunting..."%limit
-                    refreshPg()
-                    hunt()
-            else: #若无字数限制
-                slay()
-        else: #若不存在“预览”
-            refreshPg() #刷新页面
-            hunt()
-    except Exception as e:
-        print e
-        refreshPg()
-        #time.sleep(3)
-        print 'continue hunting...'
-        hunt()
-
-if __name__ == "__main__":
-    firefoxProfile = FirefoxProfile()
-    #firefoxProfile.set_preference('permissions.default.stylesheet', 2) #禁加载CSS
-    firefoxProfile.set_preference('permissions.default.image', 2) #禁加载图片
-    firefoxProfile.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false') #禁加载Flash
-    firefoxProfile.accept_untrusted_certs = True
-    options = Options()
-    #options.add_argument('-headless') #无浏览器参数
-    d=webdriver.Firefox(firefoxProfile, firefox_options=options)
-    d.set_window_size(1600, 900)
-    print "initiating..."        
-    login()
-    #switchOn()
-    limitYes = limit_YN()
-    d.get_screenshot_as_file('HuntingGround.png')  # 保存网页截图
-    #print "current title: %s"%d.title
-    print "hunting..."
-    hunt()
-    print "the end"
-    d.quit()
+        #ç­¾å°æä½
+        s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #è§¦åç­¾å°  
+        print ("Yes!")
