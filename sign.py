@@ -52,7 +52,8 @@ def sign():
         
         #ç­¾å°æä½
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
-        #s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
+        s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
+        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #è§¦åç­¾å°  
         print ("Yes!")
     except Exception as e:
