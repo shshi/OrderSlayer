@@ -21,7 +21,7 @@ def sign():
                    "Referer":"https://talent.woordee.com/users/login",
                    "Accept-Encoding":"gzip, deflate",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "_uab_collina=154139283253526626410393; SESSION=6fdb29a3-8943-42af-b7dc-61c3d5b14558"
+                   "Cookie": "_uab_collina=154185957300652152941643; gr_user_id=5e199aa3-38b1-49c3-977a-6b1f6bba8187; SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496"
                   }
         login_data = {'loginPhone':'18209347100','loginPassword':'11221135d35eacd2de7b136d15be0662','loginLowerCasePassword':'11221135d35eacd2de7b136d15be0662'} #ç»å½postæ°æ®        
         headers_sign = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"0",
@@ -31,7 +31,7 @@ def sign():
                    "Referer":"https://talent.woordee.com/square/center",
                    "Accept-Encoding":"gzip, deflate",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "SESSION=6fdb29a3-8943-42af-b7dc-61c3d5b14558"
+                   "Cookie": "gr_user_id=5e199aa3-38b1-49c3-977a-6b1f6bba8187; SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496"
                   }
         sign_data = {'translatorId':'WE16104633TR'}       
         headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
@@ -41,7 +41,7 @@ def sign():
                    "Referer":"http://talent.woordee.com/front/truser/userCenter",
                    "Accept-Encoding":"gzip, deflate",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "_uab_collina=154139283253526626410393; SESSION=6fdb29a3-8943-42af-b7dc-61c3d5b14558"
+                   "Cookie": "_uab_collina=154185957300652152941643; gr_user_id=5e199aa3-38b1-49c3-977a-6b1f6bba8187; SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496"
                   }
     
         #ç»å½æä½
@@ -51,9 +51,9 @@ def sign():
         print ("logged in")
         
         #ç­¾å°æä½
-        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
-        s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
-        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
+        #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
+        #s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
+        #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #è§¦åç­¾å°  
         print ("Yes!")
     except Exception as e:
