@@ -6,6 +6,7 @@
 # Version: 3.3
 # Version Description: added switch sate check
 #===========================================================
+import re
 import requests
 import smtplib
 from email.mime.text import MIMEText
@@ -49,6 +50,15 @@ def sign():
         
         #ç­¾å°åæ°æ®è·å
         print ("logged in")
+        
+        #Check continous count of signed days
+        content=requests.get('https://talent.woordee.com/square/center').text
+        print (content)
+        reg = r"id="continuousCount">(\d+)</em>"
+        countBf=re.compile(reg)
+        countBf=re.findall(countBf, content)[0]
+        #countBf=int(countBf)
+        print (countBf)
         
         #ç­¾å°æä½
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
