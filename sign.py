@@ -44,6 +44,18 @@ def sign():
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
                    "Cookie": "_uab_collina=154185957300652152941643; gr_user_id=5e199aa3-38b1-49c3-977a-6b1f6bba8187; SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496"
                   }
+'''
+GET /message/unread/count HTTP/1.1
+Host: talent.woordee.com
+Connection: keep-alive
+Accept: */*
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36
+Referer: https://talent.woordee.com/square/center
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+Cookie: SESSION=dec2ec69-ebfc-431b-81e8-530ba4f1289f; JSESSIONID=BC08F41F030CDA8A4670869DD7508F07
+'''
     
         #ç»å½æä½
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login) #
@@ -52,7 +64,7 @@ def sign():
         print ("logged in")
         
         #Check continous count of signed days
-        content=requests.get('https://talent.woordee.com/square/center').content
+        content=requests.get('https://talent.woordee.com/message/unread/count', headers=headers_square).content
         print (content)
         countBf=re.compile(r'id="continuousCount">(.*?)</em>')
         countBf=re.findall(countBf, content)[0]
