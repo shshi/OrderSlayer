@@ -54,9 +54,9 @@ def sign():
         #Check continous count of signed days
         content=requests.get('https://talent.woordee.com/square/center').content
         print (content)
-        countBf=re.compile(r'id="continuousCount">(\d+)</em>')
+        countBf=re.compile(r'id="continuousCount">(.*?)</em>')
         countBf=re.findall(countBf, content)[0]
-        #countBf=int(countBf)
+        countBf=int(countBf)
         print (countBf)
         
         #ç­¾å°æä½
