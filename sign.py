@@ -35,7 +35,7 @@ def sign():
                    "Cookie": "gr_user_id=5e199aa3-38b1-49c3-977a-6b1f6bba8187; SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496"
                   }
         sign_data = {'translatorId':'WE16104633TR'}       
-        headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Accept": "*/*"
+        headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Accept": "*/*",
                    "X-Requested-With": "XMLHttpRequest",
                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36",
                    "Referer":"https://talent.woordee.com/square/center",
