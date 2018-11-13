@@ -52,7 +52,7 @@ def sign():
         print ("logged in")
         
         #Check continous count of signed days
-        content=requests.get('https://talent.woordee.com/square/center').text
+        content=requests.get('https://talent.woordee.com/square/center').content
         print (content)
         countBf=re.compile(r'id="continuousCount">(\d+)</em>')
         countBf=re.findall(countBf, content)[0]
