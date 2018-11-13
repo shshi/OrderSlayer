@@ -66,10 +66,10 @@ Cookie: SESSION=dec2ec69-ebfc-431b-81e8-530ba4f1289f; JSESSIONID=BC08F41F030CDA8
         #Check continous count of signed days
         content=requests.get('https://talent.woordee.com/message/unread/count', headers=headers_square).content
         print (content)
-        countBf=re.compile(r'id="continuousCount">(.*?)</em>')
-        countBf=re.findall(countBf, content)[0]
-        countBf=int(countBf)
-        print (countBf)
+        #countBf=re.compile(r'id="continuousCount">(.*?)</em>')
+        #countBf=re.findall(countBf, content)[0]
+        #countBf=int(countBf)
+        #print (countBf)
         
         #ç­¾å°æä½
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
