@@ -2,9 +2,7 @@
 #===========================================================
 # Author：Sha0hua
 # E-mail:shi.sh@foxmail.com
-# Modified Date: 2018-06-15
-# Version: 3.3
-# Version Description: added switch sate check
+# Modified Date: 2018-11-15
 #===========================================================
 import requests
 import smtplib
@@ -45,7 +43,7 @@ def sign():
                   }
     
         #login
-        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login) #        
+        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login)
         print ("logged in")
         
         #get the sign count before sign
