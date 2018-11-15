@@ -50,7 +50,7 @@ def sign():
         
         #get the sign count before sign
         countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
-        print (countBf)
+        #print (countBf)
         
         #sign
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
