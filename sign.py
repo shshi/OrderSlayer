@@ -53,8 +53,8 @@ def sign():
         #print (countBf)
         
         #sign
-        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
-        s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
+        #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
+        #s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #è§¦åç­¾å°  
         print ("signing executed")
