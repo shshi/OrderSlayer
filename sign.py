@@ -45,9 +45,7 @@ def sign():
                   }
     
         #login
-        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login) #
-        
-        #ç­¾å°åæ°æ®è·å
+        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login) #        
         print ("logged in")
         
         #sign
