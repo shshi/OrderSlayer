@@ -48,6 +48,7 @@ def sign():
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login) #        
         print ("logged in")
         
+        #get the sign count before sign
         countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         print (countBf)
         
@@ -57,11 +58,16 @@ def sign():
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #è§¦åç­¾å°  
         print ("Yes!")
+        
+        #get the sign count after sign
         countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
+        
+        #judge the result
         if countBf == countAft:
             print ('same')
         else:
             print ('different')
+            
     except Exception as e:
         print (e)
         sendMail()
