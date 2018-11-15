@@ -48,6 +48,9 @@ def sign():
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login) #        
         print ("logged in")
         
+        content=s.get('https://talent.woordee.com/square/center').json()
+        print (content)
+        
         #sign
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
