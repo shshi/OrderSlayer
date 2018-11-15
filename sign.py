@@ -57,16 +57,17 @@ def sign():
         s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #è§¦åç­¾å°  
-        print ("Yes!")
+        print ("signing executed")
         
         #get the sign count after sign
         countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         
         #judge the result
         if countBf == countAft:
-            print ('same')
+            print ('failed')
+            sendMail()
         else:
-            print ('different')
+            print ('congrats')
             
     except Exception as e:
         print (e)
