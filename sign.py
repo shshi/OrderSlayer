@@ -6,7 +6,6 @@
 # Version: 3.3
 # Version Description: added switch sate check
 #===========================================================
-import re
 import requests
 import smtplib
 from email.mime.text import MIMEText
@@ -35,13 +34,14 @@ def sign():
                    "Cookie": "gr_user_id=5e199aa3-38b1-49c3-977a-6b1f6bba8187; SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496"
                   }
         sign_data = {'translatorId':'WE16104633TR'}       
-        headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Accept": "*/*",
-                   "X-Requested-With": "XMLHttpRequest",
-                   "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36",
-                   "Referer":"https://talent.woordee.com/square/center",
-                   "Accept-Encoding":"gzip, deflate, br",
+        headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
+                   "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
+                    #"X-Requested-With": "XMLHttpRequest",
+                   "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+                   "Referer":"http://talent.woordee.com/front/truser/userCenter",
+                   "Accept-Encoding":"gzip, deflate",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496; JSESSIONID=BC08F41F030CDA8A4670869DD7508F07"
+                   "Cookie": "_uab_collina=154185957300652152941643; gr_user_id=5e199aa3-38b1-49c3-977a-6b1f6bba8187; SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496"
                   }
     
         #ç»å½æä½
@@ -49,14 +49,6 @@ def sign():
         
         #ç­¾å°åæ°æ®è·å
         print ("logged in")
-        
-        #Check continous count of signed days
-        content=s.get('https://talent.woordee.com/square/center').text
-        print (content)
-        #countBf=re.compile(r'id="continuousCount">(.*?)</em>')
-        #countBf=re.findall(countBf, content)[0]
-        #countBf=int(countBf)
-        #print (countBf)
         
         #ç­¾å°æä½
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
