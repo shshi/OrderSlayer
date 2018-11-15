@@ -44,16 +44,16 @@ def sign():
                    "Cookie": "_uab_collina=154185957300652152941643; gr_user_id=5e199aa3-38b1-49c3-977a-6b1f6bba8187; SESSION=d56a41a1-2ed2-4cb9-ac74-9586302f7496"
                   }
     
-        #ç»å½æä½
+        #login
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login) #
         
         #ç­¾å°åæ°æ®è·å
         print ("logged in")
         
-        #ç­¾å°æä½
-        #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
-        #s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
-        #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
+        #sign
+        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
+        s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
+        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #è§¦åç­¾å°  
         print ("Yes!")
     except Exception as e:
