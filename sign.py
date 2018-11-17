@@ -67,13 +67,14 @@ def sign():
             print ('congrats')
             
     except Exception as e:
+        global e
         print (e)
         sendMail()
 
 def sendMail():        
     print ("Failed in signing")
     msg = MIMEMultipart()
-    body = MIMEText("ERROR happened from running sign.py, please check on Heroku immediately!")
+    body = MIMEText(e + "ERROR happened from running sign.py, please check on Heroku immediately!")
     msg.attach(body)
     msg['Subject'] = 'ERROR happened from running sign.py on Heroku!'
     msg['From'] = "sign.Heroku<cell.fantasy@qq.com>"
