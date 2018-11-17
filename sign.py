@@ -47,8 +47,9 @@ def sign():
         print ("logged in")
         
         #get the sign count before sign
-        #countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
-        #print (countBf)
+        countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
+        countBf=countBf.json()
+        print (countBf)
         
         #sign
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
@@ -58,15 +59,16 @@ def sign():
         print ("signing executed")
         
         #get the sign count after sign
-        countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
-        print (countAft)
+        countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
+        countAft=countAft.json()
+        #print (countAft)
         print (countAft["result"])
         
         #judge the result
-        #if countBf == countAft:
-        #    sendMail()
-        #else:
-        #    print ('congrats')
+        if countBf == countAft:
+            sendMail()
+        else:
+            print ('congrats')
             
     except Exception as e:
         global E
