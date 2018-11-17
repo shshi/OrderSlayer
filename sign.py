@@ -10,6 +10,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def sign():
+    global e
     try:
         s = requests.session()        
         headers_login = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"125",
@@ -67,7 +68,6 @@ def sign():
             print ('congrats')
             
     except Exception as e:
-        global e
         print (e)
         sendMail()
 
