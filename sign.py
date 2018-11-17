@@ -47,8 +47,8 @@ def sign():
         print ("logged in")
         
         #get the sign count before sign
-        countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
-        print (countBf)
+        #countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
+        #print (countBf)
         
         #sign
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
@@ -60,12 +60,13 @@ def sign():
         #get the sign count after sign
         countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         print (countAft)
+        print (countAft["result"])
         
         #judge the result
-        if countBf == countAft:
-            sendMail()
-        else:
-            print ('congrats')
+        #if countBf == countAft:
+        #    sendMail()
+        #else:
+        #    print ('congrats')
             
     except Exception as e:
         global E
@@ -76,7 +77,7 @@ def sign():
 def sendMail():        
     print ("Failed in signing")
     msg = MIMEMultipart()
-    body = MIMEText(E + "\nERROR happened from running sign.py, please check on Heroku immediately!")
+    body = MIMEText("ERROR happened from running sign.py, please check on Heroku immediately!\n\n" + "Detail:\n" + E)
     msg.attach(body)
     msg['Subject'] = 'ERROR happened from running sign.py on Heroku!'
     msg['From'] = "sign.Heroku<cell.fantasy@qq.com>"
