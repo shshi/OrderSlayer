@@ -10,7 +10,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def sign():
-    global e
     try:
         s = requests.session()        
         headers_login = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"125",
@@ -60,6 +59,7 @@ def sign():
         
         #get the sign count after sign
         countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
+        print (countAft)
         
         #judge the result
         if countBf == countAft:
@@ -68,13 +68,15 @@ def sign():
             print ('congrats')
             
     except Exception as e:
+        global E
+        E=str(e)
         print (e)
         sendMail()
 
 def sendMail():        
     print ("Failed in signing")
     msg = MIMEMultipart()
-    body = MIMEText(e + "ERROR happened from running sign.py, please check on Heroku immediately!")
+    body = MIMEText(E + "\nERROR happened from running sign.py, please check on Heroku immediately!")
     msg.attach(body)
     msg['Subject'] = 'ERROR happened from running sign.py on Heroku!'
     msg['From'] = "sign.Heroku<cell.fantasy@qq.com>"
