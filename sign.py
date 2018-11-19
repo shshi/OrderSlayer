@@ -66,7 +66,7 @@ def sign():
         print (result)
         
         #judge the result
-        if result==True:
+        if result:
             print ("congrats")
         else:
             global E
