@@ -64,16 +64,17 @@ def sign():
         #print (countAft)
         result=countAft['signInfo']['sign']
         print (result)
-        type(result)
+        print (type(result))
         
         #judge the result
-        if countBf == countAft:
-            sendMail()
+        if result==True:
+            print ("congrats")
         else:
-            print ('congrats')
+            global E
+            E='result == False, signing failed'
+            sendMail()
             
     except Exception as e:
-        global E
         E=str(e)
         print (e)
         sendMail()
