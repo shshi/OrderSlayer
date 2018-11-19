@@ -29,7 +29,7 @@ def sign():
                    "Referer":"https://talent.woordee.com/square/center",
                    "Accept-Encoding":"gzip, deflate, br",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe444"
+                   "Cookie": "SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe44"
                   }
         sign_data = {'translatorId':'WE16104633TR'}       
         headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
