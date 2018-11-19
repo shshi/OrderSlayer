@@ -62,7 +62,9 @@ def sign():
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         #print (countAft)
-        print (countAft["result"])
+        result=countAft['signIfo']['sign']
+        print ()
+        type(result)
         
         #judge the result
         if countBf == countAft:
