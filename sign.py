@@ -19,7 +19,7 @@ def sign():
                    "Referer":"https://talent.woordee.com/users/login",
                    "Accept-Encoding":"gzip, deflate, br",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "_uab_collina=154139283253526626410393; SESSION=ca46a1ca-5d25-42af-b53e-adfc89d5aeb3"
+                   "Cookie": "_uab_collina=154139283253526626410393; SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe444"
                   }
         login_data = {'loginPhone':'18209347100','loginPassword':'11221135d35eacd2de7b136d15be0662','loginLowerCasePassword':'11221135d35eacd2de7b136d15be0662'} #ç»å½postæ°æ®        
         headers_sign = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"0",
@@ -29,7 +29,7 @@ def sign():
                    "Referer":"https://talent.woordee.com/square/center",
                    "Accept-Encoding":"gzip, deflate, br",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "SESSION=ca46a1ca-5d25-42af-b53e-adfc89d5aeb3"
+                   "Cookie": "SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe444"
                   }
         sign_data = {'translatorId':'WE16104633TR'}       
         headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
@@ -39,7 +39,7 @@ def sign():
                    "Referer":"http://talent.woordee.com/front/truser/userCenter",
                    "Accept-Encoding":"gzip, deflate",
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "SESSION=ca46a1ca-5d25-42af-b53e-adfc89d5aeb3"
+                   "Cookie": "SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe444"
                   }
     
         #login
@@ -47,20 +47,20 @@ def sign():
         print ("logged in")
         
         #get the sign count before sign
-        countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
-        countBf=countBf.json()
+        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
+        countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         print (countBf)
         
         #sign
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         #s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
-        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
+        #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #signing  
         print ("signing executed")
         
         #get the sign count after sign
-        countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
-        countAft=countAft.json()
+        s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
+        countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         #print (countAft)
         print (countAft["result"])
         
