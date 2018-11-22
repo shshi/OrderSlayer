@@ -50,7 +50,7 @@ def sign():
         #get cookie
         kk = s.get('https://talent.woordee.com/users/login', headers=headers_resp).cookies.get_dict()
         #print (kk)
-        kk_re = '\"Cookie\": ' + '\"SESSION=' + kk[SESSION] + '\"'
+        kk_re = '\"Cookie\": ' + '\"SESSION=' + kk['SESSION'] + '\"'
         print (kk_re)
         #login
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login).cookies.get_dict()
