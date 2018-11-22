@@ -11,7 +11,14 @@ from email.mime.multipart import MIMEMultipart
 
 def sign():
     try:
-        s = requests.session()        
+        s = requests.session()
+        headers_resp = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Cache-Control":"max-age=0",
+                   "Upgrade-Insecure-Requests":"1", "Origin":"https://talent.woordee.com", "X-Requested-With":"XMLHttpRequest",
+                   "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
+                   "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+                   "Accept-Encoding":"gzip, deflate, br",
+                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8"
+                  }
         headers_login = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"125",
                    "Accept":"*/*", "Origin":"https://talent.woordee.com", "X-Requested-With":"XMLHttpRequest",
                    "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
@@ -42,6 +49,9 @@ def sign():
                    "Cookie": "SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe444"
                   }
     
+        #get cookie
+        rep = s.get('https://talent.woordee.com/users/login', headers=headers_resp).cookies.get_dict()
+        print (rep)
         #login
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login)
         print ("logged in")
@@ -50,6 +60,7 @@ def sign():
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         #print (countBf)
+        result=countBf['signInfo']['sign']
         
         #sign
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
