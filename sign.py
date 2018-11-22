@@ -25,8 +25,7 @@ def sign():
                    "Content-Type":"application/x-www-form-urlencoded",
                    "Referer":"https://talent.woordee.com/users/login",
                    "Accept-Encoding":"gzip, deflate, br",
-                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "_uab_collina=154139283253526626410393; SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe444"
+                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8"
                   }
         login_data = {'loginPhone':'18209347100','loginPassword':'11221135d35eacd2de7b136d15be0662','loginLowerCasePassword':'11221135d35eacd2de7b136d15be0662'} #ç»å½postæ°æ®        
         headers_sign = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Content-Length":"0",
@@ -53,8 +52,9 @@ def sign():
         rep = s.get('https://talent.woordee.com/users/login', headers=headers_resp).cookies.get_dict()
         print (rep)
         #login
-        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login)
+        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login).cookies.get_dict()
         print ("logged in")
+        print (log)
         
         #get the sign count before sign
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
