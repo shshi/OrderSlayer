@@ -47,7 +47,6 @@ def sign():
         #login
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login)
         print ("logged in")
-        print (log)
         
         #get the sign count before sign
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
