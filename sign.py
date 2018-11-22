@@ -34,8 +34,7 @@ def sign():
                    "Content-Type":"application/x-www-form-urlencoded",
                    "Referer":"https://talent.woordee.com/square/center",
                    "Accept-Encoding":"gzip, deflate, br",
-                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe444"
+                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8"
                   }
         sign_data = {'translatorId':'WE16104633TR'}       
         headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
@@ -49,8 +48,10 @@ def sign():
                   }
     
         #get cookie
-        rep = s.get('https://talent.woordee.com/users/login', headers=headers_resp).cookies.get_dict()
-        print (rep)
+        kk = s.get('https://talent.woordee.com/users/login', headers=headers_resp).cookies.get_dict()
+        #print (kk)
+        kk_re = '\"Cookie\": ' + '\"SESSION=' + kk[SESSION] + '\"'
+        print (kk_re)
         #login
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login).cookies.get_dict()
         print ("logged in")
