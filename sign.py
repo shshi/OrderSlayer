@@ -37,23 +37,15 @@ def sign():
                    "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8"
                   }
         sign_data = {'translatorId':'WE16104633TR'}       
-        headers_square = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Upgrade-Insecure-Requests":"1",
-                   "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36",
-                    #"X-Requested-With": "XMLHttpRequest",
-                   "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-                   "Referer":"http://talent.woordee.com/front/truser/userCenter",
-                   "Accept-Encoding":"gzip, deflate",
-                   "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8",
-                   "Cookie": "SESSION=f5e15e7d-7886-4d48-b0d4-21e702cfe444"
-                  }
     
         #get cookie
         kk = s.get('https://talent.woordee.com/users/login', headers=headers_resp).cookies.get_dict()
         #print (kk)
         kk_re = '\"Cookie\": ' + '\"SESSION=' + kk['SESSION'] + '\"'
         print (kk_re)
+        
         #login
-        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login).cookies.get_dict()
+        log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login)
         print ("logged in")
         print (log)
         
@@ -61,7 +53,8 @@ def sign():
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         #print (countBf)
-        result=countBf['signInfo']['sign']
+        signBf=countBf['signInfo']['sign']
+        print (signBf)
         
         #sign
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
