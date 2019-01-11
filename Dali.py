@@ -5,8 +5,8 @@
 # Modified Date: 2019-01-11
 #===========================================================
 import re
-import urllib
-import requests
+import urllib.request as u
+#import requests
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -14,9 +14,9 @@ from email.mime.multipart import MIMEMultipart
 def DUcheck():
     try:
         url="http://www.dali.edu.cn/nrsc/gkzp/index.htm"
-        page = urllib.request.urlopen(url)
-        html = page.read()
-        html = requests.get(url)
+        page = u.urlopen(url)
+        html = page.read().decode('UTF-8')
+        #html = requests.get(url)
         reg = r'<span>(.*?)</span>'#<span>2018-06-13</span>
         date_re = re.compile(reg)
         date_list = re.findall(date_re,html)
