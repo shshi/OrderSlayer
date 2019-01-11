@@ -6,7 +6,6 @@
 #===========================================================
 import re
 import urllib.request as u
-#import requests
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -16,14 +15,10 @@ def DUcheck():
         url="http://www.dali.edu.cn/nrsc/gkzp/index.htm"
         page = u.urlopen(url)
         html = page.read().decode('UTF-8')
-        #html = requests.get(url)
         reg = r'<span>(.*?)</span>'#<span>2018-06-13</span>
         date_re = re.compile(reg)
         date_list = re.findall(date_re,html)
         latest = date_list[0]
-        #print date_list
-        #print latest
-        #print type(latest)
 
         if latest == "2018-06-13":
             print ("no update")
