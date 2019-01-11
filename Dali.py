@@ -20,7 +20,7 @@ def DUcheck():
         date_list = re.findall(date_re,html)
         latest = date_list[0]
 
-        if latest == "2018-06-3":
+        if latest == "2018-06-13":
             print ("no update")
         else:
             print ("new update! %s"%latest)
