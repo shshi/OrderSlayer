@@ -15,6 +15,7 @@ def DUcheck():
         url="http://www.dali.edu.cn/nrsc/gkzp/index.htm"
         page = urllib.request.urlopen(url)
         html = page.read()
+        html = str(html)
         reg = r'<span>(.*?)</span>'#<span>2018-06-13</span>
         date_re = re.compile(reg)
         date_list = re.findall(date_re,html)
