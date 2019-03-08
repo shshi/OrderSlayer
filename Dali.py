@@ -15,12 +15,12 @@ def DUcheck():
         url="http://www.dali.edu.cn/nrsc/gkzp/index.htm"
         page = u.urlopen(url)
         html = page.read().decode('UTF-8')
-        reg = r'<span>(.*?)</span>'#<span>2018-06-13</span>
+        reg = r'<span>(.*?)</span>'#<span>2019-03-07</span>
         date_re = re.compile(reg)
         date_list = re.findall(date_re,html)
         latest = date_list[0]
 
-        if latest == "2018-06-13":
+        if latest == "2019-03-07":
             print ("no update")
         else:
             print ("new update! %s"%latest)
