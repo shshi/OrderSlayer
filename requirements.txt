@@ -1,4 +1,4 @@
-gunicorn==19.5.0
+gunicorn==19.7.0
 Flask==0.12.2
 certifi==2017.7.27.1
 beautifulsoup4==4.6.0
