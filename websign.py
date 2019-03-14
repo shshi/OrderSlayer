@@ -14,18 +14,12 @@ def getList():
 
     SSR_list=base64.b64decode(html).decode('utf-8')
     SSR_list=SSR_list.strip()   
-    #SSR_list=SSR_list.replace('ssr://','')
-    #f.write(SSR_list)   
     lst=SSR_list.splitlines()
-    #print(lst)
-       
+    
     for i in lst:
         try:
             parse(i)
-            #i=base64.b64decode(str(i[6:])).decode('utf-8')
-            #print (i)
         except Exception as e:
-            #print (e)
             continue
 
 def parse(ssr):
@@ -38,7 +32,7 @@ def parse_ssr(base64_encode_str):
    parts = decode_str.split(':')
    if len(parts) != 6:
        print('不能解析SSR链接: %s' % base64_encode_str)
-       #return
+       return
 
    server = parts[0]
    port = parts[1]
@@ -67,9 +61,6 @@ def parse_ssr(base64_encode_str):
 
    print('server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'
          % (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group))
-   return 'server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'
-         % (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group)
-
 
 def fill_padding(base64_encode_str):
 
