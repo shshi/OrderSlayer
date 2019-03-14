@@ -15,7 +15,7 @@ def getList():
     SSR_list=base64.b64decode(html).decode('utf-8')
     SSR_list=SSR_list.strip()   
     lst=SSR_list.splitlines()
-    
+    list_sum=""
     for i in lst:
         try:
             base64_encode_str = i[6:]
@@ -49,13 +49,14 @@ def getList():
             remarks = base64_decode(param_dic['remarks'])
             group = base64_decode(param_dic['group'])
 
-            print('server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'
-                     % (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group))
-            return 'server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'% (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group)
+            lst_item='server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'% (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group)
+            list_sum+=lst_item
+            
         except Exception as e:
             print (e)
             continue
-
+    print (list_sum)
+    return list_sum
 def fill_padding(base64_encode_str):
 
    need_padding = len(base64_encode_str) % 4 != 0
