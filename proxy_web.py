@@ -23,7 +23,7 @@ def getList():
         except Exception as e:
             continue
 
-            def parse(ssr):
+def parse(ssr):
     base64_encode_str = ssr[6:]
     parse_ssr(base64_encode_str)
 
