@@ -1,6 +1,5 @@
 #-*- coding: utf-8 -*-
 import flask
-import re
 import urllib.request as u
 import base64
 
