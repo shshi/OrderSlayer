@@ -18,49 +18,43 @@ def getList():
     
     for i in lst:
         try:
-            parse(i)
+            base64_encode_str = i[6:]
+            decode_str = base64_decode(base64_encode_str)
+            parts = decode_str.split(':')
+            if len(parts) != 6:
+                print('不能解析SSR链接: %s' % base64_encode_str)
+
+            server = parts[0]
+            port = parts[1]
+            protocol = parts[2]
+            method = parts[3]
+            obfs = parts[4]
+            password_and_params = parts[5]
+
+            password_and_params = password_and_params.split("/?")
+
+            password_encode_str = password_and_params[0]
+            password = base64_decode(password_encode_str)
+            params = password_and_params[1]
+
+            param_parts = params.split('&')
+
+            param_dic = {}
+            for part in param_parts:
+               key_and_value = part.split('=')
+               param_dic[key_and_value[0]] = key_and_value[1]
+
+            obfsparam = base64_decode(param_dic['obfsparam'])
+            protoparam = base64_decode(param_dic['obfsparam'])
+            remarks = base64_decode(param_dic['remarks'])
+            group = base64_decode(param_dic['group'])
+
+            print('server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'
+                     % (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group))
+            return 'server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'% (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group)
         except Exception as e:
+            print (e)
             continue
-
-def parse(ssr):
-    base64_encode_str = ssr[6:]
-    parse_ssr(base64_encode_str)
-
-
-def parse_ssr(base64_encode_str):
-   decode_str = base64_decode(base64_encode_str)
-   parts = decode_str.split(':')
-   if len(parts) != 6:
-       print('不能解析SSR链接: %s' % base64_encode_str)
-
-   server = parts[0]
-   port = parts[1]
-   protocol = parts[2]
-   method = parts[3]
-   obfs = parts[4]
-   password_and_params = parts[5]
-
-   password_and_params = password_and_params.split("/?")
-
-   password_encode_str = password_and_params[0]
-   password = base64_decode(password_encode_str)
-   params = password_and_params[1]
-
-   param_parts = params.split('&')
-
-   param_dic = {}
-   for part in param_parts:
-       key_and_value = part.split('=')
-       param_dic[key_and_value[0]] = key_and_value[1]
-
-   obfsparam = base64_decode(param_dic['obfsparam'])
-   protoparam = base64_decode(param_dic['obfsparam'])
-   remarks = base64_decode(param_dic['remarks'])
-   group = base64_decode(param_dic['group'])
-
-   print('server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'
-         % (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group))
-   return 'server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'% (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group)
 
 def fill_padding(base64_encode_str):
 
