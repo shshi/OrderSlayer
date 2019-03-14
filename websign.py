@@ -78,6 +78,7 @@ def base64_decode(base64_encode_str):
 
 
 if __name__ == '__main__':
+    app.debug = True
     app.run().getList()
     print("All finished")    
 
