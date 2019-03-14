@@ -33,7 +33,7 @@ def parse_ssr(base64_encode_str):
    if len(parts) != 6:
        print('不能解析SSR链接: %s' % base64_encode_str)
 
-        server = parts[0]
+   server = parts[0]
    port = parts[1]
    protocol = parts[2]
    method = parts[3]
