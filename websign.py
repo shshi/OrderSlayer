@@ -1,7 +1,6 @@
 #-*- coding: utf-8 -*-
 import flask
 import re
-import time
 import urllib.request as u
 import base64
 
@@ -89,11 +88,7 @@ def base64_decode(base64_encode_str):
 
 
 if __name__ == '__main__':
-    app.run()
-
-    getList()
-    print("All finished")
-    time.sleep(30)
-    
+    app.run().getList()
+    print("All finished")    
 
 
