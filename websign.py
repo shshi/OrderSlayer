@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import flask
 import re
 import time
@@ -29,8 +30,6 @@ def getList():
             #print (e)
             continue
 
-    #f.close()
-
 def parse(ssr):
     base64_encode_str = ssr[6:]
     parse_ssr(base64_encode_str)
@@ -41,7 +40,7 @@ def parse_ssr(base64_encode_str):
    parts = decode_str.split(':')
    if len(parts) != 6:
        print('不能解析SSR链接: %s' % base64_encode_str)
-       return
+       #return
 
    server = parts[0]
    port = parts[1]
