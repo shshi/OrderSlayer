@@ -32,9 +32,8 @@ def parse_ssr(base64_encode_str):
    parts = decode_str.split(':')
    if len(parts) != 6:
        print('不能解析SSR链接: %s' % base64_encode_str)
-       return
 
-   server = parts[0]
+        server = parts[0]
    port = parts[1]
    protocol = parts[2]
    method = parts[3]
@@ -61,8 +60,6 @@ def parse_ssr(base64_encode_str):
 
    print('server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'
          % (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group))
-   return 'server: %s, port: %s, 协议: %s, 加密方法: %s, 密码: %s, 混淆: %s, 混淆参数: %s, 协议参数: %s, 备注: %s, 分组: %s\n'
-         % (server, port, protocol, method, password, obfs, obfsparam, protoparam, remarks, group)
 
 def fill_padding(base64_encode_str):
 
