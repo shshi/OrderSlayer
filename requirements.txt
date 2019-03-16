@@ -4,6 +4,6 @@ certifi==2017.7.27.1
 beautifulsoup4==4.6.0
 idna==2.6
 chardet==3.0.4
-requests==2.18.4
+requests==2.21.0
 urllib3==1.22
 requests_html==0.9.0
