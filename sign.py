@@ -12,7 +12,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def sign():
-    sec=randint(3620,7200)
+    sec=randint(1800,7000)
     hour='%.2f'%(sec/3600)
     print ('waiting time: %d sec, %s hour'%(sec, hour))
     time.sleep(sec)
