@@ -5,11 +5,17 @@
 # Modified Date: 2018-11-15
 #===========================================================
 import requests
+import time
+from random import randint
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def sign():
+    sec=randint(3620,7200)
+    hour='%.2f'%(sec/3600)
+    print ('waiting time: %d sec, %s hour'%(sec, hour))
+    time.sleep(sec)
     try:
         s = requests.session()
         headers_resp = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Cache-Control":"max-age=0",
