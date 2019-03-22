@@ -71,7 +71,7 @@ def sign():
         
         #judge the result
         if result:
-            rst="congrats\n"+signBf+"==>"+result
+            rst="congrats\n"+signBf+"to"+result
             return rst
         else:
             global E
