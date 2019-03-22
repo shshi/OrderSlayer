@@ -77,7 +77,7 @@ def sign():
         
         #judge the result
         if result:
-            return "congrats\n"+result+"\n"timecount
+            return "congrats\n"+result+"\n"+timecount
         else:
             global E
             E='result==False, signing failed'
