@@ -106,13 +106,13 @@ def sendMail():
     except Exception as e:
         print (e)
     
-sign()
+
 
 
 
 if __name__ == '__main__':
     app.debug = True
-    app.run().getList()
+    app.run().sign()
     print("All finished")    
 
 
