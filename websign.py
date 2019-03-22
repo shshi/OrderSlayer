@@ -2,7 +2,6 @@
 import flask
 import requests
 import time
-from random import randint
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -11,11 +10,6 @@ app = flask.Flask(__name__)
 @app.route("/")
 
 def sign():
-    sec=randint(1800,7000)
-    hour='%.2f'%(sec/3600)
-    timecount='waiting time: %d sec, %s hour'%(sec, hour)
-    print (timecount)
-    time.sleep(sec)
     try:
         s = requests.session()
         headers_resp = {"Host":"talent.woordee.com", "Connection":"keep-alive", "Cache-Control":"max-age=0",
@@ -77,7 +71,7 @@ def sign():
         
         #judge the result
         if result:
-            return "congrats\n"+result+"\n"+timecount
+            return "congrats\n"+result
         else:
             global E
             E='result==False, signing failed'
