@@ -101,10 +101,6 @@ def sendMail():
     except Exception as e:
         print (e)
     
-
-
-
-
 if __name__ == '__main__':
     app.debug = True
     app.run().sign()
