@@ -14,7 +14,8 @@ from email.mime.multipart import MIMEMultipart
 def sign():
     sec=randint(1800,7000)
     hour='%.2f'%(sec/3600)
-    print ('waiting time: %d sec, %s hour'%(sec, hour))
+    wait_time='waiting time: %d sec, %s hour'%(sec, hour)
+    print (wait_time)
     time.sleep(sec)
     try:
         s = requests.session()
@@ -48,36 +49,37 @@ def sign():
         kk = s.get('https://talent.woordee.com/users/login', headers=headers_resp).cookies.get_dict()
         #print (kk)
         kk_re = '\"Cookie\": ' + '\"SESSION=' + kk['SESSION'] + '\"'
-        print (kk_re)
+        #print (kk_re)
         
         #login
         log = s.post('https://talent.woordee.com/users/doLogin', data=login_data, headers=headers_login)
-        print ("logged in")
+        #print ("logged in")
         
         #get the sign count before sign
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         countBf=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         #print (countBf)
         signBf=countBf['signInfo']['sign']
-        print (signBf)
+        #print (signBf)
         
         #sign
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         #s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign)
         #s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         s.post('https://talent.woordee.com/square/operate/sign', headers=headers_sign) #signing  
-        print ("signing executed")
+        #print ("signing executed")
         
         #get the sign count after sign
         s.post('https://talent.woordee.com/checkLogin', headers=headers_sign)
         countAft=s.post('https://talent.woordee.com/square/operate/signdetail', headers=headers_sign).json()
         #print (countAft)
         result=countAft['signInfo']['sign']
-        print (result)
+        #print (result)
         
         #judge the result
         if result:
-            print ("congrats")
+            all_result=wait_time+"\n"+str(signBf)+"==>"+str(result)
+            print (all_result)
         else:
             global E
             E='result==False, signing failed'
