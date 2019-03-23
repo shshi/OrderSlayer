@@ -78,7 +78,8 @@ def sign():
         
         #judge the result
         if result:
-            all_result=wait_time+"\n"+str(signBf)+"==>"+str(result)
+            time_now=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+            all_result=wait_time+"\n"+str(signBf)+"==>"+str(result)+"\nsign time: "+ time_now
             print (all_result)
         else:
             global E
