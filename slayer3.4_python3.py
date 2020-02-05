@@ -27,7 +27,7 @@ def login():
     time.sleep(10)
     print ("logging in...")
     try:
-        d.find_element_by_class_name("tel").send_keys("18209347100") #输入手机号
+        d.find_element_by_class_name("tel").send_keys("18869876502") #输入手机号
         d.find_element_by_id("password").send_keys("ssh19198918") #输入密码
         #d.find_element_by_class_name("green-btn submit-btn").click() #触发登录
         d.find_element_by_xpath("/html/body/div[2]/div/div[2]/form/input").click()
