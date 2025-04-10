@@ -115,7 +115,7 @@ def sendMail():
     try:
         s = smtplib.SMTP_SSL("smtp.qq.com", 465)
         s.connect("smtp.qq.com")
-        s.login("cell.fantasy","Ssh31415926")
+        s.login("cell.fantasy","s.3")
         s.sendmail("sign.Heroku<cell.fantasy@qq.com>", "shi.sh@foxmail.com", msg.as_string())
         s.close()
         print ("Successfully sent to %s"%msg['to'])
