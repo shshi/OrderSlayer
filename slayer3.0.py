@@ -29,7 +29,7 @@ def login():
         pass
     print "logging in..."
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
-    b.find_element_by_id("password").send_keys("ssh19198918") #输入密码
+    b.find_element_by_id("password").send_keys("s.1") #输入密码
     try:
         b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
     except:
