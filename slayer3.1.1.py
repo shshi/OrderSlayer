@@ -23,7 +23,7 @@ def login():
     #d.set_page_load_timeout(7)
     try:
         d.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
-        d.find_element_by_id("password").send_keys("ssh19198918") #输入密码
+        d.find_element_by_id("password").send_keys("s.1") #输入密码
         d.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
         WebDriverWait(b, 9223372036854775807, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'myCode')))
         #d.get_screenshot_as_file('main.png')
