@@ -28,7 +28,7 @@ def login():
     b.get("http://talent.woordee.com/front/truser.html") #WE登录页 
     print "logging in..."
     b.find_element_by_id("loginPhone").send_keys("18209347100") #输入手机号
-    b.find_element_by_id("password").send_keys("ssh19198918") #输入密码
+    b.find_element_by_id("password").send_keys("s.1") #输入密码
     b.find_element_by_xpath("//*[@onclick='login()']").click() #触发登录
     b.get("http://talent.woordee.com/front/task/taskCenter") #进入"订单中心"页面
     print "successfully logged in"
