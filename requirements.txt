@@ -2,7 +2,7 @@ gunicorn==19.9.0
 Flask==1.0.2
 certifi==2022.12.7
 beautifulsoup4==4.6.0
-idna==2.6
+idna==3.7
 chardet==3.0.4
 requests==2.21.0
 urllib3==1.26.5
